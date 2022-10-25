@@ -1,4 +1,3 @@
-import warnings
 from itertools import combinations, permutations
 
 from . import Edge, Graph, Mark
@@ -29,7 +28,8 @@ class PDAG(Graph):
                     self.remove_edge(node_v, node_w)
                     self.add_edge(Edge(node_v, node_w, Mark.Tail, Mark.ARROW))
                     if verbose:
-                        print(f'Rule0: Orient {node_u} --- {node_w} --- {node_v} into {node_u} --> {node_w} <-- {node_v}.')
+                        print(
+                            f'Rule0: Orient {node_u} --- {node_w} --- {node_v} into {node_u} --> {node_w} <-- {node_v}.')
 
     def rule1(self, verbose=False):
         '''

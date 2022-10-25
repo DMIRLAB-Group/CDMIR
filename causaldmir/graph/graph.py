@@ -4,7 +4,7 @@ from typing import Iterable
 import numpy as np
 import pandas as pd
 
-from .edge import Edge, edge2str
+from .edge import Edge
 from .mark import Mark
 
 
@@ -48,7 +48,8 @@ class Graph(object):
         self.check_missing_node(node_v)
 
         if not overwrite:
-            assert not self.is_connected(node_u, node_v), f'Node {node_u} and node {node_v} already have edges connected.'
+            assert not self.is_connected(node_u,
+                                         node_v), f'Node {node_u} and node {node_v} already have edges connected.'
 
         self._adj[node_u].update({node_v: mark_v})
         self._adj[node_v].update({node_u: mark_u})
@@ -95,7 +96,6 @@ class Graph(object):
             self._adj[node_u].pop(node_v, None)
             self._adj[node_v].pop(node_u, None)
 
-
     def remove_edges_from(self):
 
         ...
@@ -110,13 +110,13 @@ class Graph(object):
             yield node_v
 
     def is_arrow(self, node_u, node_v):
-        return self._adj[node_u][node_v] == Mark.ARROW
+        return self.is_connected(node_u, node_v) and self._adj[node_u][node_v] == Mark.ARROW
 
     def is_tail(self, node_u, node_v):
-        return self._adj[node_u][node_v] == Mark.Tail
+        return self.is_connected(node_u, node_v) and self._adj[node_u][node_v] == Mark.Tail
 
     def is_circle(self, node_u, node_v):
-        return self._adj[node_u][node_v] == Mark.CIRCLE
+        return self.is_connected(node_u, node_v) and self._adj[node_u][node_v] == Mark.CIRCLE
 
     def is_fully_directed(self, node_u, node_v):
         return self.is_connected(node_u, node_v) and self.is_tail(node_v, node_u) and self.is_arrow(node_u, node_v)
@@ -147,13 +147,14 @@ class Graph(object):
         assert mark_u in valid_marks, f'The mark {mark_u} should not appear in objects of class {type(self).__name__}.'
 
     def __str__(self):
-        edge_list_num_str = [f'{i+1}. {edge2str(edge)}' for i, edge in enumerate(self.edges)]
+        edge_list_num_str = [f'{i + 1}. {edge}' for i, edge in enumerate(self.edges)]
 
         return "\n".join(
             [
                 f'Graph Class: {type(self).__name__}',
-                f'Graph Nodes: \n {self.node_list}',
-                f'Graph Edges: \n',
+                'Graph Nodes:',
+                ", ".join([str(node_name) for node_name in self.node_list]),
+                'Graph Edges:',
                 "\n".join(edge_list_num_str)
             ]
         )

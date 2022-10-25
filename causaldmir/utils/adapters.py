@@ -1,6 +1,7 @@
 from numpy import ndarray
 from pandas import DataFrame
 
+
 def data_form_converter(data, var_names):
     assert type(data) in [DataFrame, ndarray]
     n = data.shape[1]

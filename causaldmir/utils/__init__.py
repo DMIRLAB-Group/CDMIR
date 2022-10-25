@@ -1,1 +1,1 @@
-from .independence import Independence
+from .independence import ConditionalIndependentTest

@@ -1,7 +1,5 @@
 from typing import Iterable
 
-import numpy as np
-
 from ..adapters import data_form_converter
 
 
@@ -11,7 +9,7 @@ def _stringize_list(z: Iterable[int] = None):
     return ', '.join([str(s) for s in z])
 
 
-def _get_cache_key(x:int, y:int, z: Iterable[int] = None):
+def _get_cache_key(x: int, y: int, z: Iterable[int] = None):
     if x > y:
         x, y = y, x
     if z is None:
@@ -43,7 +41,7 @@ class ConditionalIndependentTest(object):
         # print(f'{key}: {value}')
         return value
 
-    def itest(self, x_id:int, y_id:int, z_ids: Iterable[int] = None):
+    def itest(self, x_id: int, y_id: int, z_ids: Iterable[int] = None):
         key = _get_cache_key(x_id, y_id, z_ids)
         if self.cache.get(key):
             value = self.cache[key]
@@ -52,7 +50,6 @@ class ConditionalIndependentTest(object):
             self.cache[key] = value
 
         return value
-
 
     def cal_stats(self, x: int, y: int, z: Iterable[int] = None):
         '''

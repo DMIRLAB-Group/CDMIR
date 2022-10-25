@@ -1,6 +1,6 @@
 from itertools import combinations, permutations
 
-from ...graph import PDAG, Graph
+from ...graph import PDAG
 
 
 def adjacency_search(independence, var_names, alpha=0.05, verbose=False):
