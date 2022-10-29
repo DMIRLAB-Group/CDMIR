@@ -355,7 +355,7 @@ class TimeLagSimulator:  # generate the time series dataset
             raise ValueError('noise scale must be a scalar or has length d')
 
         Xt_ = []
-        X_lags = _gen_noise((max_lag, n_nodes), 'gauss' if noise_type is 'logistic' else noise_type, scale_vec)
+        X_lags = _gen_noise((max_lag, n_nodes), 'gauss' if noise_type == 'logistic' else noise_type, scale_vec)
         for lag in range(max_lag):
             Xt_.append(X_lags[lag, :])
 
