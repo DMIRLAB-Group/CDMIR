@@ -3,3 +3,4 @@ pandas
 scipy>=1.7.3
 setuptools
 networkx
+sklearn
