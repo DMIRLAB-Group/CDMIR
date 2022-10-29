@@ -1,7 +1,7 @@
 import numpy as np
 
 from causal_dmir.datasets.simlulators import IIDSimulator
-from causal_dmir.datasets.utils import erdos_renyi
+from ..utils import erdos_renyi
 
 
 class TestIIDSimulator:

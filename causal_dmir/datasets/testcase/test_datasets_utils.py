@@ -1,7 +1,7 @@
 import numpy as np
 import networkx as nx
 
-from causal_dmir.datasets.utils import erdos_renyi, np2nx, generate_lag_transitions
+from ..utils import erdos_renyi, np2nx, generate_lag_transitions
 
 
 def test_erdos_renyi():

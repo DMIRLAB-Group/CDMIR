@@ -1,7 +1,7 @@
 import numpy as np
 
-from causal_dmir.datasets.simlulators import TimeLagSimulator
-from causal_dmir.datasets.utils import erdos_renyi, generate_lag_transitions
+from ..simlulators import TimeLagSimulator
+from ..utils import erdos_renyi, generate_lag_transitions
 
 
 class TestTimeLagSimulator:
