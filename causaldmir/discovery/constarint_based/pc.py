@@ -1,4 +1,4 @@
-from ..utils import Independence
+from causaldmir.utils import Independence
 
 
 class PC(object):
