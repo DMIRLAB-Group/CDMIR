@@ -41,6 +41,9 @@ class Graph(object):
         for node in self.node_list:
             yield node
 
+    def number_of_nodes(self):
+        return sum(1 for _ in self.nodes)
+
     def add_edge(self, edge: Edge, overwrite=False):
         node_u, node_v, mark_u, mark_v = edge
 
@@ -71,6 +74,9 @@ class Graph(object):
                 edge = self.get_edge(self.node_list[i], self.node_list[j])
                 if edge:
                     yield edge
+
+    def number_of_edges(self):
+        return sum(1 for _ in self.edges)
 
     def remove_node(self, node_u):
         self.check_missing_node(node_u)
@@ -131,7 +137,7 @@ class Graph(object):
 
         for i, node_u in enumerate(self.node_list):
             for node_v in self._adj[node_u]:
-                adj_matrix[node_index[node_v], i] = self._adj[node_u][node_v]
+                adj_matrix[node_index[node_v], i] = self._adj[node_u][node_v].value
         if transpose:
             return adj_matrix.T
         else:

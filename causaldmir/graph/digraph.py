@@ -81,3 +81,35 @@ class DiGraph(Graph):
                 if y in a:
                     for pa_y in self.get_parents(y):
                         push_queue((pa_y, 1))
+
+    def is_d_separate(self, x, y, z: Iterable = ()):
+        # print(f'{x = }, {y = } | {list(z) = }')
+        return y not in self.get_reachable_nodes(x, z)
+
+    def in_degree(self, node_u):
+        return sum(1 for _ in self.get_parents(node_u))
+
+    def out_degree(self, node_u):
+        return sum(1 for _ in self.get_children(node_u))
+
+    def topo_sort(self):
+        found_parents = {node: 0 for node in self.nodes}
+        sorted_node_list = []
+        q = deque()
+        v = {node: False for node in self.nodes}
+        for node_u in self.nodes:
+            if self.in_degree(node_u) == found_parents[node_u]:
+                q.append(node_u)
+                v[node_u] = True
+        while len(q) != 0:
+            node_u = q.popleft()
+            sorted_node_list.append(node_u)
+            for ch_u in self.get_children(node_u):
+                found_parents[ch_u] = found_parents[ch_u] + 1
+                if not v[ch_u] and (self.in_degree(ch_u) == found_parents[ch_u]):
+                    q.append(ch_u)
+                    v[ch_u] = True
+
+        return sorted_node_list
+    def is_acyclic(self):
+        return len(self.topo_sort()) == self.number_of_nodes()

@@ -1,7 +1,7 @@
 import numpy as np
 
-from ..kernel import GaussianKernel
-from ..kernel_based import KCI
+from causaldmir.utils.independence.kernel_based import KCI
+from causaldmir.utils.kernel import GaussianKernel
 
 np.random.seed(10)
 X = np.random.randn(300, 1)

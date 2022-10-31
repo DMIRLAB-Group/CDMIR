@@ -11,8 +11,9 @@ from scipy.stats import gamma, zscore
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF, ConstantKernel, WhiteKernel
 
+from causaldmir.utils.kernel import BaseKernel, GaussianKernel
+
 from ._base import BaseConditionalIndependenceTest
-from .kernel import BaseKernel, GaussianKernel
 
 
 class KCI(BaseConditionalIndependenceTest):

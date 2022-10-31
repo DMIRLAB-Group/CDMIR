@@ -1,3 +1,4 @@
+import logging
 from itertools import combinations, permutations
 
 from . import Edge, Graph, Mark
@@ -28,7 +29,7 @@ class PDAG(Graph):
                     self.remove_edge(node_v, node_w)
                     self.add_edge(Edge(node_v, node_w, Mark.Tail, Mark.ARROW))
                     if verbose:
-                        print(
+                        logging.info(
                             f'Rule0: Orient {node_u} --- {node_w} --- {node_v} into {node_u} --> {node_w} <-- {node_v}.')
 
     def rule1(self, verbose=False):
@@ -54,7 +55,7 @@ class PDAG(Graph):
                     self.add_edge(Edge(node_v, node_w, Mark.Tail, Mark.ARROW))
                     changed = True
                     if verbose:
-                        print(f'Rule1: Orient {node_v} --- {node_w} into {node_v} --> {node_w}.')
+                        logging.info(f'Rule1: Orient {node_v} --- {node_w} into {node_v} --> {node_w}.')
         return changed
 
     def rule2(self, verbose=False):
@@ -82,7 +83,7 @@ class PDAG(Graph):
                     self.add_edge(Edge(node_u, node_w, Mark.Tail, Mark.ARROW))
                     changed = True
                     if verbose:
-                        print(f'Rule2: Orient {node_u} --- {node_w} into {node_u} --> {node_w}.')
+                        logging.info(f'Rule2: Orient {node_u} --- {node_w} into {node_u} --> {node_w}.')
         return changed
 
     def rule3(self, verbose=False):
@@ -126,6 +127,15 @@ class PDAG(Graph):
                         self.remove_edge(node_x, node_w)
                         self.add_edge(Edge(node_x, node_w, Mark.Tail, Mark.ARROW))
                         if verbose:
-                            print(f'Rule4: Orient {node_x} --- {node_w} into {node_x} --> {node_w}.')
+                            logging.info(f'Rule4: Orient {node_x} --- {node_w} into {node_x} --> {node_w}.')
                         changed = True
         return changed
+
+    def orient_by_meek_rules(self, verbose=False):
+        changed = True
+        while changed:
+            changed = False
+            changed |= self.rule1(verbose=verbose)
+            changed |= self.rule2(verbose=verbose)
+            changed |= self.rule3(verbose=verbose)
+            changed |= self.rule4(verbose=verbose)

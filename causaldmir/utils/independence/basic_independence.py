@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from ..adapters import data_form_converter
+from ..adapters import data_form_converter_for_class_method
 
 
 def _stringize_list(z: Iterable[int] = None):
@@ -21,8 +21,9 @@ def _get_cache_key(x: int, y: int, z: Iterable[int] = None):
 
 class ConditionalIndependentTest(object):
 
+    @data_form_converter_for_class_method
     def __init__(self, data, var_names=None):
-        self._data, self.var_names = data_form_converter(data, var_names)
+        self._data, self.var_names = data, var_names
         self.name_id = {name: i for i, name in enumerate(self.var_names)}
         self.cache = dict()
 
@@ -31,15 +32,8 @@ class ConditionalIndependentTest(object):
 
     def test(self, x, y, z: Iterable = None):
         x_id, y_id = map(self._get_name_id, (x, y))
-        z_ids = list(map(self._get_name_id, z))
-        key = _get_cache_key(x_id, y_id, z_ids)
-        if self.cache.get(key):
-            value = self.cache[key]
-        else:
-            value = self.cal_stats(x_id, y_id, z_ids)
-            self.cache[key] = value
-        # print(f'{key}: {value}')
-        return value
+        z_ids = list(map(self._get_name_id, z)) if z is not None else None
+        return self.itest(x_id, y_id, z_ids)
 
     def itest(self, x_id: int, y_id: int, z_ids: Iterable[int] = None):
         key = _get_cache_key(x_id, y_id, z_ids)
@@ -48,7 +42,7 @@ class ConditionalIndependentTest(object):
         else:
             value = self.cal_stats(x_id, y_id, z_ids)
             self.cache[key] = value
-
+        # print(f'{key}: {value}')
         return value
 
     def cal_stats(self, x: int, y: int, z: Iterable[int] = None):
