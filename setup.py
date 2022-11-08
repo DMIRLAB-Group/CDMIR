@@ -21,6 +21,8 @@ setup(
         'numpy',
         'pandas',
         'scipy>=1.7.3',
+        'scikit-learn',
+        'torch>=1.7.1',
         'matplotlib',
     ],
     long_description=long_description,
@@ -28,7 +30,6 @@ setup(
     classifiers=[
         'Operating System :: OS Independent',
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",

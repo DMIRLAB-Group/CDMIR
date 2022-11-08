@@ -1,8 +1,7 @@
 numpy
 pandas
 scipy>=1.7.3
-setuptools
-matplotlib
-networkx
-sklearn
+scikit-learn
 torch>=1.7.1
+matplotlib
+setuptools

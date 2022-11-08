@@ -80,15 +80,13 @@ class BaseConditionalIndependenceTest(object):
                  ys: int | str | List[int | str] | ndarray,
                  zs: int | str | List[int | str] | ndarray | None = None, *args, **kwargs) -> Tuple[
         float, float | ndarray | None]:
-        return self._compute_p_value(xs, ys, zs, self.__compute_p_value_without_condition,
-                                     self.__compute_p_value_with_condition)
+        return self._compute_p_value(xs, ys, zs,
+                                     self.__compute_p_value_without_condition, self.__compute_p_value_with_condition)
 
-    def __compute_p_value_with_condition(self, x_ids: List[int], y_ids: List[int], z_ids: List[int]) -> Tuple[
-        float, float | ndarray | None]:
+    def __compute_p_value_with_condition(self, x_ids: List[int], y_ids: List[int], z_ids: List[int]) \
+            -> Tuple[float, float | ndarray | None]:
         raise NotImplementedError()
 
-    def __compute_p_value_without_condition(self, x_ids: List[int], y_ids: List[int]) -> Tuple[
-        float, float | ndarray | None]:
-                        ys: int | str | List[int | str] | ndarray,
-                        zs: int | str | List[int | str] | ndarray | None = None, *args, **kwargs) -> Tuple[float, float | ndarray | None]:
-        return self._compute_p_value(xs, ys, zs, self.__compute_p_value_without_condition, self.__compute_p_value_with_condition)
+    def __compute_p_value_without_condition(self, x_ids: List[int], y_ids: List[int]) \
+            -> Tuple[float, float | ndarray | None]:
+        raise NotImplementedError()

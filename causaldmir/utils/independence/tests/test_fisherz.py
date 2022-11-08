@@ -11,12 +11,12 @@ def test_fisherz():
     data = np.hstack((X, X_prime, Y, Z))
 
     f = FisherZ(data=data)
-    p_value, stat = f(0, 3, 2)
+    p_value, stat = f.cal_stats(0, 3, [2])
     assert p_value > 0.01
 
-    p_value, stat = f(0, 3, None)
+    p_value, stat = f.cal_stats(0, 3, None)
     assert p_value < 0.01
 
-    p_value, stat = f(3, 1, None)
+    p_value, stat = f.cal_stats(3, 1, None)
     assert p_value > 0.01
 

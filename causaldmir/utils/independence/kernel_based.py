@@ -4,15 +4,13 @@ from abc import ABC
 from typing import List, Tuple
 
 import numpy as np
-from numpy import isnan, ndarray, shape, sqrt, trace
+from numpy import ndarray, isnan, trace, shape, sqrt
 from numpy.linalg import eigh, eigvalsh
 from pandas import DataFrame
-from scipy.stats import gamma, zscore
+from scipy.stats import zscore, gamma
 from sklearn.gaussian_process import GaussianProcessRegressor
-from sklearn.gaussian_process.kernels import RBF, ConstantKernel, WhiteKernel
+from sklearn.gaussian_process.kernels import RBF, WhiteKernel, ConstantKernel
 
-from causaldmir.utils.kernel import BaseKernel, GaussianKernel
-from ._base import BaseConditionalIndependenceTest
 from ._base import BaseConditionalIndependenceTest
 from ..kernel import BaseKernel, GaussianKernel
 
@@ -31,22 +29,14 @@ class KCI(BaseConditionalIndependenceTest):
         self.__ckci = self.__ConditionalKCI(data, kernel_x, kernel_y, kernel_z, approximate_mode, **kwargs)
 
     def __call__(self, xs: int | str | List[int | str] | ndarray,
-                 ys: int | str | List[int | str] | ndarray,
-                 zs: int | str | List[int | str] | ndarray | None = None, *args, **kwargs) -> Tuple[
-        float, float | ndarray | None]:
-        return self._compute_p_value(xs, ys, zs, self.__compute_p_value_without_condition,
-                                     self.__compute_p_value_with_condition)
-
-    def __compute_p_value_with_condition(self, x_ids: List[int], y_ids: List[int], z_ids: List[int]) -> Tuple[
-        float, float | ndarray | None]:
-        return self.__ckci(x_ids, y_ids, z_ids)
-
-    def __compute_p_value_without_condition(self, x_ids: List[int], y_ids: List[int]) -> Tuple[
-        float, float | ndarray | None]:
                         ys: int | str | List[int | str] | ndarray,
                         zs: int | str | List[int | str] | ndarray | None = None, *args, **kwargs) -> Tuple[float, float | ndarray | None]:
         return self._compute_p_value(xs, ys, zs, self.__compute_p_value_without_condition, self.__compute_p_value_with_condition)
 
+    def __compute_p_value_with_condition(self, x_ids: List[int], y_ids: List[int], z_ids: List[int]) -> Tuple[float, float | ndarray | None]:
+        return self.__ckci(x_ids, y_ids, z_ids)
+
+    def __compute_p_value_without_condition(self, x_ids: List[int], y_ids: List[int]) -> Tuple[float, float | ndarray | None]:
         return self.__ukci(x_ids, y_ids)
 
     class __UnconditionalKCI(BaseConditionalIndependenceTest, ABC):
@@ -201,7 +191,7 @@ class KCI(BaseConditionalIndependenceTest):
                 wx = wx[wx > wx.max() * self.lambda_product_threshold]
                 vx = 2 * sqrt(n) * vx.dot(np.diag(np.sqrt(wx))) / sqrt(wx[0])
                 kernel_x = ConstantKernel(1.0, (1e-3, 1e3)) * RBF(width_z * np.ones(Dz), (1e-2, 1e2)) + \
-                           WhiteKernel(0.1, (1e-10, 1e+1))
+                          WhiteKernel(0.1, (1e-10, 1e+1))
                 gpx = GaussianProcessRegressor(kernel=kernel_x)
                 # fit Gaussian process, including hyperparameter optimization
                 gpx.fit(data_z, vx)

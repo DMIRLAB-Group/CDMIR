@@ -23,7 +23,7 @@ def plot_graph(graph, layout, is_latent=None, figsize=None, dpi=None):
         plt_node(ax, (pos[node_str][0] + center[0], pos[node_str][1] + center[1]), node_radius=node_radius,
                  node_shape=node_shape, node_name=node_str)
 
-    plt.show()
+    # plt.show()
     return fig
 
 
