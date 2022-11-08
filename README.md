@@ -6,3 +6,4 @@
 - numpy
 - pandas
 - scipy>=1.7.3
+- matplotlib

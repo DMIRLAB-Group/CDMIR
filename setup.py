@@ -21,6 +21,7 @@ setup(
         'numpy',
         'pandas',
         'scipy>=1.7.3',
+        'matplotlib',
     ],
     long_description=long_description,
     long_description_content_type='text/markdown',
