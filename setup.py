@@ -11,7 +11,7 @@ except IOError:
     long_description = ""
 
 setup(
-    name="causal-dmir",
+    name="causaldmir",
     version="0.0.1",
     description="A pip package",
     license="GPL",
