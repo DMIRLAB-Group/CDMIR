@@ -12,8 +12,9 @@ from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF, ConstantKernel, WhiteKernel
 
 from causaldmir.utils.kernel import BaseKernel, GaussianKernel
-
 from ._base import BaseConditionalIndependenceTest
+from ._base import BaseConditionalIndependenceTest
+from ..kernel import BaseKernel, GaussianKernel
 
 
 class KCI(BaseConditionalIndependenceTest):
@@ -42,6 +43,10 @@ class KCI(BaseConditionalIndependenceTest):
 
     def __compute_p_value_without_condition(self, x_ids: List[int], y_ids: List[int]) -> Tuple[
         float, float | ndarray | None]:
+                        ys: int | str | List[int | str] | ndarray,
+                        zs: int | str | List[int | str] | ndarray | None = None, *args, **kwargs) -> Tuple[float, float | ndarray | None]:
+        return self._compute_p_value(xs, ys, zs, self.__compute_p_value_without_condition, self.__compute_p_value_with_condition)
+
         return self.__ukci(x_ids, y_ids)
 
     class __UnconditionalKCI(BaseConditionalIndependenceTest, ABC):

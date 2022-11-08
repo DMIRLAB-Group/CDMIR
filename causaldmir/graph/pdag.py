@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import logging
 from itertools import combinations, permutations
 
@@ -9,6 +10,8 @@ class PDAG(Graph):
         self.check_mark(edge.mark_u, Mark.pdag_marks())
         self.check_mark(edge.mark_v, Mark.pdag_marks())
         super().add_edge(edge, overwrite=overwrite)
+        # conflict part
+        # super().add_edge(node_u, node_v, mark_u, mark_v, overwrite=overwrite)
 
     def create_complete_undirected_graph(self):
         for node_u, node_v in combinations(self.nodes, 2):
