@@ -3,3 +3,6 @@ pandas
 scipy>=1.7.3
 setuptools
 matplotlib
+networkx
+sklearn
+torch>=1.7.1

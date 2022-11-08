@@ -2,9 +2,9 @@ name: Python package
 
 on:
   push:
-    branches: [ main, development, zhiyi ]
+    branches: [ main, development, zhiyi, Xiaokai ]
   pull_request:
-    branches: [ main, development, zhiyi ]
+    branches: [ main, development, zhiyi, Xiaokai ]
 
 jobs:
   build:
