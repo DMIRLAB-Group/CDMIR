@@ -1,12 +1,11 @@
+from unittest import TestCase
 import numpy as np
 
 from ..simlulators import TimeLagSimulator
 from ..utils import erdos_renyi, generate_lag_transitions
 
 
-class TestTimeLagSimulator:
-
-    pass
+class TestTimeLagSimulator(TestCase):
 
     def test_simulate_linear_anm_gauss(self):
         n_nodes = 10

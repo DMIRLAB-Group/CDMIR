@@ -6,7 +6,7 @@ from scipy.stats import norm
 
 
 def fisherz(x, y, Z=None):
-    if S is None:
+    if Z is None:
         data = array([x, y]).T
     else:
         x = reshape(x, (-1, 1)) if x.ndim == 1 else x

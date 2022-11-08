@@ -23,6 +23,7 @@ setup(
         'scipy>=1.7.3',
         'scikit-learn',
         'torch>=1.7.1',
+        'networkx',
         'matplotlib',
     ],
     long_description=long_description,

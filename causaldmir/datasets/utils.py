@@ -19,11 +19,11 @@ def pd2np(pd_data):
 
 
 def nx2np(nx_data):
-    return nx.to_numpy_matrix(nx_data)
+    return nx.to_numpy_array(nx_data)
 
 
 def np2nx(np_data, create_using=None):
-    return nx.from_numpy_matrix(np_data, create_using=create_using)
+    return nx.from_numpy_array(np_data, create_using=create_using)
 
 
 def leaky_relu(inputs, neg_slope=0.2):
