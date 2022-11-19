@@ -6,7 +6,7 @@ from .mark import Mark
 class Edge(namedtuple('Edge', ['node_u', 'node_v', 'mark_u', 'mark_v'])):
     __slots__ = ()
 
-    def __new__(cls, node_u, node_v, mark_u=Mark.Tail, mark_v=Mark.ARROW):
+    def __new__(cls, node_u, node_v, mark_u=Mark.Tail, mark_v=Mark.Arrow):
         return super().__new__(cls, node_u, node_v, mark_u, mark_v)
 
     def __str__(self):
@@ -15,11 +15,11 @@ class Edge(namedtuple('Edge', ['node_u', 'node_v', 'mark_u', 'mark_v'])):
 
 _lmark2ascii = {
     Mark.Tail: '-',
-    Mark.ARROW: '<',
-    Mark.CIRCLE: 'o'
+    Mark.Arrow: '<',
+    Mark.Circle: 'o'
 }
 _rmark2ascii = {
     Mark.Tail: '-',
-    Mark.ARROW: '>',
-    Mark.CIRCLE: 'o'
+    Mark.Arrow: '>',
+    Mark.Circle: 'o'
 }

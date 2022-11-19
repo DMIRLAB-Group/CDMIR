@@ -25,9 +25,9 @@ class PDAG(Graph):
                     continue
                 if node_w not in sep_set[(node_u, node_v)]:
                     self.remove_edge(node_u, node_w)
-                    self.add_edge(Edge(node_u, node_w, Mark.Tail, Mark.ARROW))
+                    self.add_edge(Edge(node_u, node_w, Mark.Tail, Mark.Arrow))
                     self.remove_edge(node_v, node_w)
-                    self.add_edge(Edge(node_v, node_w, Mark.Tail, Mark.ARROW))
+                    self.add_edge(Edge(node_v, node_w, Mark.Tail, Mark.Arrow))
                     if verbose:
                         logging.info(
                             f'Rule0: Orient {node_u} --- {node_w} --- {node_v} into {node_u} --> {node_w} <-- {node_v}.')

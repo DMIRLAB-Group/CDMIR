@@ -3,17 +3,17 @@ from enum import Enum
 
 class Mark(Enum):
     Tail = -1
-    NULL = 0
-    ARROW = 1
-    CIRCLE = 2
+    Null = 0
+    Arrow = 1
+    Circle = 2
 
     def __str__(self):
         return self.name
 
     @staticmethod
     def pdag_marks():
-        return [Mark.Tail, Mark.ARROW]
+        return [Mark.Tail, Mark.Arrow]
 
     @staticmethod
     def pag_marks():
-        return [Mark.Tail, Mark.ARROW, Mark.CIRCLE]
+        return [Mark.Tail, Mark.Arrow, Mark.Circle]

@@ -17,6 +17,8 @@ class Graph(object):
             self.node_set = set(nodes)
             self.node_list = list(nodes)
 
+        assert len(self.node_set) == len(self.node_list), 'There are duplicate points.'
+
         self._adj = dict()
         self.init_graph()
 
@@ -116,13 +118,13 @@ class Graph(object):
             yield node_v
 
     def is_arrow(self, node_u, node_v):
-        return self.is_connected(node_u, node_v) and self._adj[node_u][node_v] == Mark.ARROW
+        return self.is_connected(node_u, node_v) and self._adj[node_u][node_v] == Mark.Arrow
 
     def is_tail(self, node_u, node_v):
         return self.is_connected(node_u, node_v) and self._adj[node_u][node_v] == Mark.Tail
 
     def is_circle(self, node_u, node_v):
-        return self.is_connected(node_u, node_v) and self._adj[node_u][node_v] == Mark.CIRCLE
+        return self.is_connected(node_u, node_v) and self._adj[node_u][node_v] == Mark.Circle
 
     def is_fully_directed(self, node_u, node_v):
         return self.is_connected(node_u, node_v) and self.is_tail(node_v, node_u) and self.is_arrow(node_u, node_v)

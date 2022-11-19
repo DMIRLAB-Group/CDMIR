@@ -8,7 +8,7 @@ from . import Edge, Graph, Mark
 class DiGraph(Graph):
     def add_edge(self, edge: Edge, overwrite=False):
         self.check_mark(edge.mark_u, [Mark.Tail])
-        self.check_mark(edge.mark_v, [Mark.ARROW])
+        self.check_mark(edge.mark_v, [Mark.Arrow])
         super().add_edge(edge, overwrite=overwrite)
 
     def get_parents(self, node_u):
