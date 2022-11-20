@@ -52,7 +52,7 @@ class PDAG(Graph):
                     continue
                 if (not self.is_connected(node_u, node_w)) and self.is_fully_undirected(node_v, node_w):
                     self.remove_edge(node_v, node_w)
-                    self.add_edge(Edge(node_v, node_w, Mark.Tail, Mark.ARROW))
+                    self.add_edge(Edge(node_v, node_w, Mark.Tail, Mark.Arrow))
                     changed = True
                     if verbose:
                         logging.info(f'Rule1: Orient {node_v} --- {node_w} into {node_v} --> {node_w}.')
@@ -80,7 +80,7 @@ class PDAG(Graph):
                     continue
                 if self.is_fully_undirected(node_u, node_w):
                     self.remove_edge(node_u, node_w)
-                    self.add_edge(Edge(node_u, node_w, Mark.Tail, Mark.ARROW))
+                    self.add_edge(Edge(node_u, node_w, Mark.Tail, Mark.Arrow))
                     changed = True
                     if verbose:
                         logging.info(f'Rule2: Orient {node_u} --- {node_w} into {node_u} --> {node_w}.')
@@ -102,7 +102,7 @@ class PDAG(Graph):
                     if not (self.is_fully_undirected(node_u, node_x) and self.is_fully_directed(node_x, node_w)):
                         continue
                     self.remove_edge(node_u, node_w)
-                    self.add_edge(Edge(node_u, node_w, Mark.Tail, Mark.ARROW))
+                    self.add_edge(Edge(node_u, node_w, Mark.Tail, Mark.Arrow))
                     if verbose:
                         print(f'Rule3: Orient {node_u} --- {node_w} into {node_u} --> {node_w}.')
                     changed = True
@@ -125,7 +125,7 @@ class PDAG(Graph):
                         continue
                     if self.is_connected(node_v, node_x):
                         self.remove_edge(node_x, node_w)
-                        self.add_edge(Edge(node_x, node_w, Mark.Tail, Mark.ARROW))
+                        self.add_edge(Edge(node_x, node_w, Mark.Tail, Mark.Arrow))
                         if verbose:
                             logging.info(f'Rule4: Orient {node_x} --- {node_w} into {node_x} --> {node_w}.')
                         changed = True
