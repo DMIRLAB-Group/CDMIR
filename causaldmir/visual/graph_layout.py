@@ -5,7 +5,7 @@ from numpy import cos, linspace, pi, sin
 from ..graph import Graph
 
 
-def circular_layout(graph: Graph, scale=0.3, sort_node=False) -> Dict:
+def circular_layout(graph: Graph, scale=0.45, sort_node=False) -> Dict:
     node_list = [str(node) for node in graph.nodes]
 
     n = len(node_list)
