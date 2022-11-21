@@ -4,7 +4,8 @@ from causaldmir.graph import PDAG, DiGraph
 
 
 def dag2cpdag(dag: DiGraph):
-    assert dag.is_acyclic()
+    if not dag.is_acyclic():
+        print(1)
     n = dag.number_of_nodes()
     pdag = PDAG(list(dag.nodes))
     pdag.create_complete_undirected_graph()
