@@ -1,0 +1,7 @@
+numpy
+pandas
+networkx 
+kerpy
+HSIC
+matplotlib
+scipy
