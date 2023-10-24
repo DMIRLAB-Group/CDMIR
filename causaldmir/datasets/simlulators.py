@@ -12,7 +12,7 @@ except:
     def sigmoid(inputs):
         return 1 / (1 + np.exp(-inputs))
 
-from datasets import utils
+from causaldmir.datasets import utils
 
 
 def _pnl_func(func_type, d_inputs, d_outputs, neg_slope=0.2):
