@@ -1,6 +1,9 @@
 import numpy as np
 import pandas as pd
-import HSIC2 as hsic
+try:
+	import indTest.HSIC2 as hsic
+except ImportError:
+    import HSIC as hsic
 import independence as ID
 
 

@@ -1,4 +1,5 @@
-#API for HSIC test
+import sys
+sys.path.append("./indTest")
 from kerpy.GaussianKernel import GaussianKernel
 from HSICTestObject import HSICTestObject
 from numpy import shape,savetxt,loadtxt,transpose,shape,reshape,concatenate
@@ -7,24 +8,25 @@ from independence_testing.HSICBlockTestObject import HSICBlockTestObject
 import numpy as np
 import pandas as pd
 
-#method 1:HSIC test and return boolean
-#x and y:
-#    data type: numpy.array()
-#    dim: samples * 1
-#alph: test alph
-def test(x,y,alph=0.01):
+
+def test(x,y,alph=0.05):
     lens = len(x)
     x=x.reshape(lens,1)
     y=y.reshape(lens,1)
 ##    kernelX=GaussianKernel()
 ##    kernelY=GaussianKernel()
 
-    kernelY = GaussianKernel(float(0.1))
-    kernelX=GaussianKernel(float(0.1))
+    kernelY = GaussianKernel(float(0.15))
+    kernelX=GaussianKernel(float(0.15))
+
+
+
     num_samples = lens
+
     myspectralobject = HSICSpectralTestObject(num_samples, kernelX=kernelX, kernelY=kernelY,
                                           kernelX_use_median=False, kernelY_use_median=False,
-                                          rff=True, num_rfx=30, num_rfy=30, num_nullsims=1000)
+                                          rff=True, num_rfx=20, num_rfy=20, num_nullsims=1000)
+
     pvalue = myspectralobject.compute_pvalue(x, y)
 
     #print(pvalue)
@@ -32,31 +34,31 @@ def test(x,y,alph=0.01):
         return True
     else:
         return False
+    #return pvalue
 
-#method 2
 def test2(x,y,alph=0.08):
     lens = len(x)
     x=x.reshape(lens,1)
     y=y.reshape(lens,1)
-##    kernelX=GaussianKernel()
-##    kernelY=GaussianKernel()
-    kernelY = GaussianKernel(float(0.45))
-    kernelX=GaussianKernel(float(0.45))
+    kernelX=GaussianKernel()
+    kernelY=GaussianKernel()
+##    kernelY = GaussianKernel(float(0.45))
+##    kernelX=GaussianKernel(float(0.45))
     num_samples = lens
+
     myblockobject = HSICBlockTestObject(num_samples, kernelX=kernelX, kernelY=kernelY,
                                     kernelX_use_median=False, kernelY_use_median=False,
                                     blocksize=80, nullvarmethod='permutation')
 
     pvalue = myblockobject.compute_pvalue(x, y)
 
-    return pvalue
-    #print(pvalue)
-##    if pvalue >alph:
-##        return True
-##    else:
-##        return False
+    if pvalue >alph:
+        return True
+    else:
+        return False
 
-# HSIC test by return hsic pval
+
+
 def INtest(x,y,alph=0.01):
     lens = len(x)
     x=x.reshape(lens,1)
@@ -69,7 +71,8 @@ def INtest(x,y,alph=0.01):
 
     myspectralobject = HSICSpectralTestObject(num_samples, kernelX=kernelX, kernelY=kernelY,
                                           kernelX_use_median=True, kernelY_use_median=True,
-                                          rff=True, num_rfx=30, num_rfy=30, num_nullsims=1000)
+                                          rff=True, num_rfx=20, num_rfy=20, num_nullsims=1000)
+
     pvalue = myspectralobject.compute_pvalue(x, y)
 
     return pvalue
@@ -89,3 +92,4 @@ def INtest2(x,y,alph=0.01):
     pvalue = myblockobject.compute_pvalue(x, y)
 
     return pvalue
+
