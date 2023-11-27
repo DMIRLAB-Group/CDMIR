@@ -6,3 +6,4 @@ torch>=1.7.1
 networkx
 matplotlib
 setuptools
+tick
