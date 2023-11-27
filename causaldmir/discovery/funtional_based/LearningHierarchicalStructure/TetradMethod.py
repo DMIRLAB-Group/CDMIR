@@ -88,7 +88,7 @@ def JudgePureCluster(C, data, alpha=0.01):
 
 
 
-import SimulationData as SD
+import Paper_simulation as SD
 def main():
     data=SD.CaseI(3000)
     C=['x3','x4']
