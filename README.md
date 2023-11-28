@@ -15,3 +15,4 @@ The package is under active development. Feedbacks (issues, suggestiong, etc.) a
 - torch>=1.7.1
 - networkx
 - matplotlib
+- tick

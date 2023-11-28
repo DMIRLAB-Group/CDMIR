@@ -25,6 +25,7 @@ setup(
         'torch>=1.7.1',
         'networkx',
         'matplotlib',
+        'tick',
     ],
     long_description=long_description,
     long_description_content_type='text/markdown',

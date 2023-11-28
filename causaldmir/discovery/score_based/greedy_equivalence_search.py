@@ -231,12 +231,12 @@ def Insert(G, i, j, T):
     # Insert operator
     # insert the directed edge Xi->Xj
     nodes = G.node_list
-    G.add_edge(Edge(nodes[i], nodes[j], Mark.Tail, Mark.ARROW), overwrite=True)
+    G.add_edge(Edge(nodes[i], nodes[j], Mark.Tail, Mark.Arrow), overwrite=True)
 
     for k in range(len(T)):  # directing the previous undirected edge between T and Xj as T->Xj
         if G.get_edge(nodes[T[k]], nodes[j]) is not None:
             G.remove_edge(nodes[T[k]], nodes[j])
-        G.add_edge(Edge(nodes[T[k]], nodes[j], Mark.Tail, Mark.ARROW), overwrite=True)
+        G.add_edge(Edge(nodes[T[k]], nodes[j], Mark.Tail, Mark.Arrow), overwrite=True)
 
     return G
 
@@ -322,8 +322,8 @@ def Delete(G, i, j, H):
             G.remove_edge(nodes[j], nodes[H[k]])
         if G.get_edge(nodes[i], nodes[H[k]]) is not None:
             G.remove_edge(nodes[i], nodes[H[k]])
-        G.add_edge(Edge(nodes[j], nodes[H[k]], Mark.Tail, Mark.ARROW), overwrite=True)
-        G.add_edge(Edge(nodes[i], nodes[H[k]], Mark.Tail, Mark.ARROW), overwrite=True)
+        G.add_edge(Edge(nodes[j], nodes[H[k]], Mark.Tail, Mark.Arrow), overwrite=True)
+        G.add_edge(Edge(nodes[i], nodes[H[k]], Mark.Tail, Mark.Arrow), overwrite=True)
     return G
 
 

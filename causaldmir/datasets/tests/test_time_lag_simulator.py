@@ -1,8 +1,8 @@
 from unittest import TestCase
 import numpy as np
 
-from ..simlulators import TimeLagSimulator
-from ..utils import erdos_renyi, generate_lag_transitions
+from causaldmir.datasets.simlulators import TimeLagSimulator
+from causaldmir.datasets.utils import erdos_renyi, generate_lag_transitions
 
 
 class TestTimeLagSimulator(TestCase):

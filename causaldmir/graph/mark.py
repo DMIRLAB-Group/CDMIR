@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import IntEnum
 
 
-class Mark(Enum):
+class Mark(IntEnum):
     Tail = -1
     Null = 0
     Arrow = 1

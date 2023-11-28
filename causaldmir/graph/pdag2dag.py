@@ -13,7 +13,7 @@ def pdag2dag(pdag: PDAG):
     pdag_copy = deepcopy(pdag)
     edges = pdag_copy.edges
     for edge in edges:
-        if not ((edge.mark_u == Mark.ARROW and edge.mark_v == Mark.Tail) or (edge.mark_u == Mark.Tail and edge.mark_v == Mark.ARROW)):
+        if not ((edge.mark_u == Mark.Arrow and edge.mark_v == Mark.Tail) or (edge.mark_u == Mark.Tail and edge.mark_v == Mark.Arrow)):
             pdag_copy.remove_edge(edge.node_u, edge.node_v)
 
     pdag_p = deepcopy(pdag)
@@ -36,12 +36,12 @@ def pdag2dag(pdag: PDAG):
                     # for each undirected edge Y-X in PDAG, insert a directed edge Y->X in G
                     for index in np.intersect1d(np.where([pdag_p.is_tail(pdag_p.node_list[i], pdag_p.node_list[i_tail]) for i_tail in range(pdag_p.number_of_nodes())])[0], np.where([pdag_p.is_tail(pdag_p.node_list[i_tail], pdag_p.node_list[i]) for i_tail in range(pdag_p.number_of_nodes())])[0]):
                         if not pdag_copy.is_connected(nodes[index], nodes[i]):
-                            pdag_copy.add_edge(Edge(nodes[index], nodes[i], Mark.Tail, Mark.ARROW), overwrite=False)
+                            pdag_copy.add_edge(Edge(nodes[index], nodes[i], Mark.Tail, Mark.Arrow), overwrite=False)
                     inde[i] = 1
 
     d = DiGraph(pdag_copy.node_list)
     for edge in pdag_copy.edges:
-        if edge.mark_u == Mark.ARROW and edge.mark_v == Mark.Tail:
+        if edge.mark_u == Mark.Arrow and edge.mark_v == Mark.Tail:
             edge = Edge(edge.node_v, edge.node_u, edge.mark_v, edge.mark_u)
         d.add_edge(edge, overwrite=True)
 
