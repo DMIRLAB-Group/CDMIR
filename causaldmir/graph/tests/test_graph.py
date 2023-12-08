@@ -73,7 +73,7 @@ class TestGraph(TestCase):
         assert e.node_u == 1 and e.node_v == 4 and e.mark_u == Mark.Tail and e.mark_v == Mark.Arrow
 
     def test_edges(self):
-        g = sample_graph 
+        g = sample_graph
         edge_list = [Edge(1, 3), Edge(2, 4, Mark.Arrow, Mark.Tail), Edge(2, 5), Edge(3, 4), ]
         assert list(g.edges) == edge_list
 
