@@ -19,6 +19,17 @@ sample_graph._adj[3][4], sample_graph._adj[4][3] = Mark.Arrow, Mark.Tail
 
 
 class TestGraph(TestCase):
+    def test_init(self):
+        g = Graph([1, 2, 'x', '2'])
+        assert g.node_set == set([1, 2, 'x', '2'])
+        g = Graph(x for x in range(10))
+        assert g.node_set == set(x for x in range(10))
+        def gen():
+            for i in range(10): yield i
+        g = Graph(gen())
+        assert g.node_set == set(gen())
+
+
     def test_add_node(self):
         g = Graph(range(5))
         g.add_node(6)
