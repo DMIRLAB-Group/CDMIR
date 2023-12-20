@@ -66,3 +66,14 @@ class Test_graph_transform(TestCase):
             cpdag = dag2cpdag(dag)
             truth_cpdag = txt2graph(f'causaldmir/graph/tests/testdata/cpdag.{i}.txt')
             assert graph_compare(cpdag, truth_cpdag)
+
+    def test_pdag2dag(self):
+        ct = 32
+        for i in range(1, ct+1):
+            g = txt2graph(f'causaldmir/graph/tests/testdata/graph_data/pdag.{i}.txt')
+            pdag = PDAG(g.node_list)
+            pdag.add_edges(g.edges)
+            dag = pdag2dag(pdag)
+            truth_dag = txt2graph(f'causaldmir/graph/tests/testdata/graph_data/dag.{i}.txt')
+            assert graph_compare(dag, truth_dag)
+
