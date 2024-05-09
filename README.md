@@ -16,6 +16,4 @@ The package is under active development. Feedbacks (issues, suggestiong, etc.) a
 - networkx
 - matplotlit
 
-test001y
-test001y
-test002
+test001
