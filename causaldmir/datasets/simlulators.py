@@ -308,7 +308,15 @@ class TimeLagSimulator:  # generate the time series dataset
             n_nodes, value_lags, weight_mats, max_lag, noise_type='gauss', noise_scale=1.0):
         value_t = np.zeros(n_nodes)
         for lag in range(max_lag):
-            value_t += value_lags[lag] @ weight_mats[lag]
+            # 对矩阵乘法结果进行检查和限制
+            try:
+                product = value_lags[lag] @ weight_mats[lag]
+                if np.any(np.isinf(product)) or np.any(np.isnan(product)):
+                    raise FloatingPointError("Infinite or NaN value encountered in matrix multiplication")
+                value_t += product
+            except FloatingPointError as e:
+                print(f"Warning: {e}")
+                value_t += np.zeros_like(value_t)  # 使用零值代替
 
         if noise_type == 'logistic':
             value_t = np.random.binomial(1, sigmoid(value_t)) * 1.0
@@ -317,9 +325,13 @@ class TimeLagSimulator:  # generate the time series dataset
         else:
             noise = _gen_noise(n_nodes, noise_type, noise_scale)
             value_t += noise
+        
+        # 再次检查并限制结果范围
+        value_t = np.clip(value_t, -1e10, 1e10)  # 根据实际需要设置合适的范围
         value_lags = np.concatenate((value_lags, value_t[np.newaxis, :]), axis=0)[1:, :]
 
         return value_lags, value_t
+
 
     @staticmethod
     def simulate_linear_anm(
