@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from .. import Graph
+from causaldmir.graph import Graph
 
 
 class TestGraph(TestCase):

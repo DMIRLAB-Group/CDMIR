@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from .. import DiGraph, Edge
+from causaldmir.graph import DiGraph, Edge
 
 
 class TestDiGraph(TestCase):
