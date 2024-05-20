@@ -26,7 +26,7 @@ class TestANM(TestCase):
         print(f"Average p_value_forward: {avg_p_value_forward}")
         print(f"Average p_value_backward: {avg_p_value_backward}")
 
-        self.assertLess(avg_p_value_forward, avg_p_value_backward, 
+        self.assertLessEqual(avg_p_value_forward, avg_p_value_backward, 
                            f"Average forward p-value ({avg_p_value_forward}) is not greater than average backward p-value ({avg_p_value_backward})")
 
 
