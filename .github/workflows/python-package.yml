@@ -26,7 +26,7 @@ jobs:
           python -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple
           python -m pip install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple
           python -m pip install flake8 pytest -i https://pypi.tuna.tsinghua.edu.cn/simple
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f requirements.txt ]; then pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple; fi
           python -m pip install tick -i https://pypi.tuna.tsinghua.edu.cn/simple
       - name: Lint with flake8
         run: |
