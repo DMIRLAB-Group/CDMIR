@@ -102,5 +102,9 @@ class ANM(object):
         gp = GaussianProcessRegressor().fit(x, y)
         y_predict = gp.predict(x)
         indepscore = normalized_hsic(y_predict - y, x)
-
+        print(f"x: {x.flatten()}")
+        print(f"y: {y.flatten()}")
+        print(f"y_predict: {y_predict.flatten()}")
+        print(f"Independent score: {indepscore}")
+    
         return indepscore
