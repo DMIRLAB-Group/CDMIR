@@ -1,8 +1,8 @@
 from unittest import TestCase
 import numpy as np
 import pandas as pd
-from causaldmir.datasets.simlulators import HawkesSimulator
-from causaldmir.datasets.utils import erdos_renyi, generate_lag_transitions
+from ..simlulators import HawkesSimulator
+from ..utils import erdos_renyi, generate_lag_transitions
 
 
 class TestHawkesSimulator(TestCase):
