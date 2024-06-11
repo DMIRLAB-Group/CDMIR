@@ -14,8 +14,8 @@ class Graph(object):
             self.node_set = set()
             self.node_list = []
         else:
-            self.node_set = set(nodes)
             self.node_list = list(nodes)
+            self.node_set = set(self.node_list)
 
         assert len(self.node_set) == len(self.node_list), 'There are duplicate points.'
 
