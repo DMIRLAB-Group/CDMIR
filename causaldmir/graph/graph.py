@@ -14,9 +14,8 @@ class Graph(object):
             self.node_set = set()
             self.node_list = []
         else:
-            self.node_set = set(nodes)
             self.node_list = list(nodes)
-
+            self.node_set = set(self.node_list)
         assert len(self.node_set) == len(self.node_list), 'There are duplicate points.'
 
         self._adj = dict()
@@ -159,9 +158,10 @@ class Graph(object):
 
         return "\n".join(
             [
-                f'Graph Class: {type(self).__name__}',
+                # f'Graph Class: {type(self).__name__}',
                 'Graph Nodes:',
-                ", ".join([str(node_name) for node_name in self.node_list]),
+                ";".join([str(node_name) for node_name in self.node_list]),
+                "",
                 'Graph Edges:',
                 "\n".join(edge_list_num_str)
             ]
