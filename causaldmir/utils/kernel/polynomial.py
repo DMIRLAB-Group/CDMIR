@@ -26,4 +26,4 @@ class PolynomialKernel(BaseKernel):
         return res
 
     def __call__(self, xs: ndarray, ys: ndarray, *args, **kwargs):
-        return self.__kernel(xs, ys, self.__kernel_func) #Plan A：改成return self._BaseKernel__kernel(xs, ys, self.__kernel_func)
+        return self._BaseKernel__kernel(xs, ys, self.__kernel_func) #Plan A：把self.__kernel改成return self._BaseKernel__kernel(xs, ys, self.__kernel_func)
