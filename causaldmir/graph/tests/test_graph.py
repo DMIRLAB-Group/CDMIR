@@ -33,6 +33,7 @@ class TestGraph(TestCase):
     def test_add_node(self):
         g = Graph(range(5))
         g.add_node(6)
+
         assert g.node_list == [0, 1, 2, 3, 4, 6] and g.node_set == set(g.node_list)
         assert {0, 1, 2, 3, 4, 6} == g._adj.keys()
 
@@ -181,3 +182,4 @@ class TestGraph(TestCase):
                    for (i, j) in {(1 ,3), (2, 5), (4, 2), (3, 4)})
         assert all(g.is_fully_undirected(i, j)==False for i in range(1, 6) for j in range(1, 6) \
                    if (i, j) not in {(1 ,3), (3, 1), (2, 5), (5, 2), (4, 2), (2, 4), (3, 4), (4, 3)})
+
