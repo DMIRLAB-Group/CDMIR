@@ -19,11 +19,11 @@ class TestGES(TestCase):
         n2 = dist2(x, c)
 
         assert n2.shape == (5, 3)
-        assert n2 == np.array([[0., 5., 20.],
+        assert (n2 == np.array([[0., 5., 20.],
                                [5., 0., 5.],
                                [20., 5., 0.],
                                [45., 20., 5.],
-                               [2., 3., 14.]])
+                               [2., 3., 14.]])).all()
 
     def test_Score_G(self):
         random.seed(3407)
