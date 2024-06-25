@@ -1,10 +1,10 @@
-from locally_connected import LocallyConnected
-from lbfgsb_scipy import LBFGSBScipy
+from .locally_connected import LocallyConnected
+from .lbfgsb_scipy import LBFGSBScipy
 import torch
 import torch.nn as nn
 import numpy as np
 import math
-import utils as utils
+from . import utils
 import pandas as pd
 
 
@@ -217,7 +217,7 @@ def main():
     torch.set_default_dtype(torch.double)
     np.set_printoptions(precision=3)
 
-    import utils as ut
+    from . import utils as ut
     # ut.set_random_seed(123)
 
     """
@@ -257,7 +257,7 @@ def run(n=200, d=5, s0=10, graph_type='ER', noise_dist='uniform', sem_type='mim'
     torch.set_default_dtype(torch.double)
     np.set_printoptions(precision=3)
 
-    import utils as ut
+    from . import utils as ut
 
     print("n={}, d={}, s0={}, l1={}, l2={}, graph_type={}, sem_type={}, noise={}, low={}, high={}".
           format(n, d, s0,lambda1, lambda2, graph_type, sem_type, noise_dist, low, high))

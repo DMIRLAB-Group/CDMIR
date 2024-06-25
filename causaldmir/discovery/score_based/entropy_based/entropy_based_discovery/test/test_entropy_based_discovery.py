@@ -5,8 +5,7 @@ from unittest import TestCase
 from ..utils import set_seed
 from ..linear_ent import run
 from ..nonlinear_ent import run as run_nonlinear
-import sys
-print(sys.path)
+
 logging.basicConfig(level=logging.DEBUG,
                     format=' %(levelname)s :: %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p')
