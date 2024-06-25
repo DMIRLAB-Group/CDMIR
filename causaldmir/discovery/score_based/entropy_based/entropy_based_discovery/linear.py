@@ -2,7 +2,7 @@ import numpy as np
 import scipy.optimize as sopt
 from scipy.special import expit as sigmoid
 import scipy.sparse.linalg as slin
-import utils as ut
+from . import utils as ut
 
 
 
@@ -113,7 +113,7 @@ def original():
 
 
 def main():
-    from notears import utils
+    from . import utils
 
     n, d, s0, graph_type, sem_type = 600, 20, 40, 'ER', 'uniform'
     lamda1 = 0.001  #  gumbel:变量多的时候1.效果好  10,20-1.7  15,30-3.0
@@ -148,7 +148,7 @@ def main():
 
 def run(n=400, d=5, s0=8, graph_type='ER', sem_type='gauss', lamda1 = 0.001,
         w_ranges=((-2.0, -0.5), (0.5, 2.0)), scale_low=1., scale_high=1.):
-    import utils
+    from . import utils
 
     B_true = utils.simulate_dag(d, s0, graph_type)
     W_true = utils.simulate_parameter(B_true, w_ranges)
@@ -169,7 +169,7 @@ def run(n=400, d=5, s0=8, graph_type='ER', sem_type='gauss', lamda1 = 0.001,
 
 def run_pairwise(n=400, graph_type='ER', sem_type='gauss', lamda1 = 0.001,
         weight=1. , var_cause=1., var_effect=1.):
-    import utils
+    from . import utils
     d, s0 = 2, 1
     B_true = utils.simulate_dag(d, s0, graph_type)
     W_true = B_true * weight
@@ -191,7 +191,7 @@ def run_pairwise(n=400, graph_type='ER', sem_type='gauss', lamda1 = 0.001,
     return acc
 
 def run_real(lambda1=1e-3):
-    import utils
+    from . import utils
 
     # B_true = utils.readcsv('data/true.csv')
     # X = utils.readcsv('data/sachs_unstand.csv')
@@ -215,7 +215,7 @@ def run_real(lambda1=1e-3):
     return acc
 
 def run_data(data, B_true, lamda1):
-    import utils
+    from . import utils
     W_est = notears_linear(data, lambda1=lamda1, loss_type='l2', w_threshold=0.3, max_iter=2000)
     acc = utils.count_accuracy(B_true, W_est != 0)
     return acc

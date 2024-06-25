@@ -63,7 +63,7 @@ def ToBij():
      result = ten+s
      if np.random.randint(0,10)>5:
         result = -1*result
-     #print(result)
+     #print(results)
      return round(result,3)
 
 if __name__ == '__main__':
