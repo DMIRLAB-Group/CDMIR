@@ -4,8 +4,8 @@ import torch.nn as nn
 from torch.nn.parameter import Parameter
 import torch.optim as optim
 import torch.utils.data as Data
-import utils
-from lbfgsb_scipy import LBFGSBScipy
+from . import utils
+from .lbfgsb_scipy import LBFGSBScipy
 from torch.optim import LBFGS
 import pandas as pd
 
@@ -313,7 +313,7 @@ def original():
 
 def run_real_853(lamda1=1e-3, lamda2=0):
     print('run 853')
-    import utils
+
     lambda1 = lamda1    # 0.00001
     lambda2 = lamda2     # 0.00001
     print(lambda1, lambda2)
@@ -386,7 +386,7 @@ def main():
 def run(n=400, d=5, s0=8, graph_type='ER', sem_type='gauss', lamda1 = 0.001,
         w_ranges=((-2.0, -0.5), (0.5, 2.0)), scale_low=1., scale_high=1.):
     torch.set_default_dtype(torch.double)
-    import utils
+
 
     B_true = utils.simulate_dag(d, s0, graph_type)
     W_true = utils.simulate_parameter(B_true, w_ranges)
