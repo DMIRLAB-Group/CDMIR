@@ -60,7 +60,7 @@ class GeneralCVScore(BaseLocalScoreFunction):
             theta = 1 / (width ** 2)
 
             Kx, _ = kernel(X, X, (theta, 1))  # Gaussian kernel
-            H0 = np.matlib.eye(T) - np.matlib.ones((T, T)) / (T)  # for centering of the data in feature space
+            H0 = np.eye(T) - np.ones((T, T)) / (T)  # for centering of the data in feature space
             Kx = H0 * Kx * H0  # kernel matrix for X
 
             # eig_Kx, eix = eigdec((Kx + Kx.T)/2, np.min([400, math.floor(T/2)]), evals_only=False)   # /2
@@ -70,7 +70,7 @@ class GeneralCVScore(BaseLocalScoreFunction):
             # mx = len(IIx)
 
             # set the kernel for PA
-            Kpa = np.matlib.ones((T, T))
+            Kpa = np.ones((T, T))
 
             for m in range(PA.shape[1]):
                 G = np.sum((np.multiply(PA[:, m], PA[:, m])), axis=1)
@@ -84,7 +84,7 @@ class GeneralCVScore(BaseLocalScoreFunction):
                 theta = 1 / (width ** 2)
                 Kpa = np.multiply(Kpa, kernel(PA[:, m], PA[:, m], (theta, 1))[0])
 
-            H0 = np.matlib.eye(T) - np.matlib.ones((T, T)) / (T)  # for centering of the data in feature space
+            H0 = np.eye(T) - np.ones((T, T)) / (T)  # for centering of the data in feature space
             Kpa = H0 * Kpa * H0  # kernel matrix for PA
 
             CV = 0
@@ -119,15 +119,15 @@ class GeneralCVScore(BaseLocalScoreFunction):
                     nv = n0
 
                 n1 = T - nv
-                tmp1 = pdinv(Kpa_tr + n1 * self.lambda_value * np.matlib.eye(n1))
+                tmp1 = pdinv(Kpa_tr + n1 * self.lambda_value * np.eye(n1))
                 tmp2 = tmp1 * Kx_tr * tmp1
-                tmp3 = tmp1 * pdinv(np.matlib.eye(n1) + n1 * self.lambda_value ** 2 / gamma * tmp2) * tmp1
+                tmp3 = tmp1 * pdinv(np.eye(n1) + n1 * self.lambda_value ** 2 / gamma * tmp2) * tmp1
                 A = (Kx_te + Kpa_tr_te.T * tmp2 * Kpa_tr_te - 2 * Kx_tr_te.T * tmp1 * Kpa_tr_te
                      - n1 * self.lambda_value ** 2 / gamma * Kx_tr_te.T * tmp3 * Kx_tr_te
                      - n1 * self.lambda_value ** 2 / gamma * Kpa_tr_te.T * tmp1 * Kx_tr * tmp3 * Kx_tr * tmp1 * Kpa_tr_te
                      + 2 * n1 * self.lambda_value ** 2 / gamma * Kx_tr_te.T * tmp3 * Kx_tr * tmp1 * Kpa_tr_te) / gamma
 
-                B = n1 * self.lambda_value ** 2 / gamma * tmp2 + np.matlib.eye(n1)
+                B = n1 * self.lambda_value ** 2 / gamma * tmp2 + np.eye(n1)
                 L = np.linalg.cholesky(B)
                 C = np.sum(np.log(np.diag(L)))
                 #  CV = CV + (nv*nv*log(2*pi) + nv*C + nv*mx*log(gamma) + trace(A))/2;
@@ -147,7 +147,7 @@ class GeneralCVScore(BaseLocalScoreFunction):
             theta = 1 / (width ** 2)
 
             Kx, _ = kernel(X, X, (theta, 1))  # Gaussian kernel
-            H0 = np.matlib.eye(T) - np.matlib.ones((T, T)) / (T)  # for centering of the data in feature space
+            H0 = np.eye(T) - np.ones((T, T)) / (T)  # for centering of the data in feature space
             Kx = H0 * Kx * H0  # kernel matrix for X
 
             # eig_Kx, eix = eigdec((Kx + Kx.T) / 2, np.min([400, math.floor(T / 2)]), evals_only=False)  # /2
@@ -176,8 +176,8 @@ class GeneralCVScore(BaseLocalScoreFunction):
 
                 n1 = T - nv
                 A = (Kx_te - 1 / (gamma * n1) * Kx_tr_te.T * pdinv(
-                    np.matlib.eye(n1) + 1 / (gamma * n1) * Kx_tr) * Kx_tr_te) / gamma
-                B = 1 / (gamma * n1) * Kx_tr + np.matlib.eye(n1)
+                    np.eye(n1) + 1 / (gamma * n1) * Kx_tr) * Kx_tr_te) / gamma
+                B = 1 / (gamma * n1) * Kx_tr + np.eye(n1)
                 L = np.linalg.cholesky(B)
                 C = np.sum(np.log(np.diag(L)))
 
@@ -250,11 +250,11 @@ class MultiCVScore(BaseLocalScoreFunction):
             theta = 1 / (width ** 2 * X.shape[1])  #
 
             Kx, _ = kernel(X, X, (theta, 1))  # Gaussian kernel
-            H0 = np.matlib.eye(T) - np.matlib.ones((T, T)) / (T)  # for centering of the data in feature space
+            H0 = np.eye(T) - np.ones((T, T)) / (T)  # for centering of the data in feature space
             Kx = H0 * Kx * H0  # kernel matrix for X
 
             # set the kernel for PA
-            Kpa = np.matlib.ones((T, T))
+            Kpa = np.ones((T, T))
 
             for m in range(len(parent_i)):
                 PA = self.data[:, self.d_label[parent_i[m]]]
@@ -269,7 +269,7 @@ class MultiCVScore(BaseLocalScoreFunction):
                 theta = 1 / (width ** 2 * PA.shape[1])
                 Kpa = np.multiply(Kpa, kernel(PA, PA, (theta, 1))[0])
 
-            H0 = np.matlib.eye(T) - np.matlib.ones((T, T)) / (T)  # for centering of the data in feature space
+            H0 = np.eye(T) - np.ones((T, T)) / (T)  # for centering of the data in feature space
             Kpa = H0 * Kpa * H0  # kernel matrix for PA
 
             CV = 0
@@ -304,15 +304,15 @@ class MultiCVScore(BaseLocalScoreFunction):
                     nv = n0
 
                 n1 = T - nv
-                tmp1 = pdinv(Kpa_tr + n1 * self.lambda_value * np.matlib.eye(n1))
+                tmp1 = pdinv(Kpa_tr + n1 * self.lambda_value * np.eye(n1))
                 tmp2 = tmp1 * Kx_tr * tmp1
-                tmp3 = tmp1 * pdinv(np.matlib.eye(n1) + n1 * self.lambda_value ** 2 / gamma * tmp2) * tmp1
+                tmp3 = tmp1 * pdinv(np.eye(n1) + n1 * self.lambda_value ** 2 / gamma * tmp2) * tmp1
                 A = (Kx_te + Kpa_tr_te.T * tmp2 * Kpa_tr_te - 2 * Kx_tr_te.T * tmp1 * Kpa_tr_te
                      - n1 * self.lambda_value ** 2 / gamma * Kx_tr_te.T * tmp3 * Kx_tr_te
                      - n1 * self.lambda_value ** 2 / gamma * Kpa_tr_te.T * tmp1 * Kx_tr * tmp3 * Kx_tr * tmp1 * Kpa_tr_te
                      + 2 * n1 * self.lambda_value ** 2 / gamma * Kx_tr_te.T * tmp3 * Kx_tr * tmp1 * Kpa_tr_te) / gamma
 
-                B = n1 * self.lambda_value ** 2 / gamma * tmp2 + np.matlib.eye(n1)
+                B = n1 * self.lambda_value ** 2 / gamma * tmp2 + np.eye(n1)
                 L = np.linalg.cholesky(B)
                 C = np.sum(np.log(np.diag(L)))
                 #  CV = CV + (nv*nv*log(2*pi) + nv*C + nv*mx*log(gamma) + trace(A))/2;
@@ -332,7 +332,7 @@ class MultiCVScore(BaseLocalScoreFunction):
             theta = 1 / (width ** 2 * X.shape[1])  #
 
             Kx, _ = kernel(X, X, (theta, 1))  # Gaussian kernel
-            H0 = np.matlib.eye(T) - np.matlib.ones((T, T)) / (T)  # for centering of the data in feature space
+            H0 = np.eye(T) - np.ones((T, T)) / (T)  # for centering of the data in feature space
             Kx = H0 * Kx * H0  # kernel matrix for X
 
             CV = 0
@@ -357,8 +357,8 @@ class MultiCVScore(BaseLocalScoreFunction):
 
                 n1 = T - nv
                 A = (Kx_te - 1 / (gamma * n1) * Kx_tr_te.T * pdinv(
-                    np.matlib.eye(n1) + 1 / (gamma * n1) * Kx_tr) * Kx_tr_te) / gamma
-                B = 1 / (gamma * n1) * Kx_tr + np.matlib.eye(n1)
+                    np.eye(n1) + 1 / (gamma * n1) * Kx_tr) * Kx_tr_te) / gamma
+                B = 1 / (gamma * n1) * Kx_tr + np.eye(n1)
                 L = np.linalg.cholesky(B)
                 C = np.sum(np.log(np.diag(L)))
 
