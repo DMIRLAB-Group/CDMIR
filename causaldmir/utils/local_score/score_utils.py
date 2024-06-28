@@ -37,8 +37,8 @@ def dist2(x, c):
     if (dimx != dimc):
         raise Exception('Data dimension does not match dimension of centres')
 
-    n2 = (np.matlib.ones((ncentres, 1)) * np.sum(np.multiply(x, x).T, axis=0)).T + \
-         np.matlib.ones((ndata, 1)) * np.sum(np.multiply(c, c).T, axis=0) - \
+    n2 = (np.ones((ncentres, 1)) * np.sum(np.multiply(x, x).T, axis=0)).T + \
+         np.ones((ndata, 1)) * np.sum(np.multiply(c, c).T, axis=0) - \
          2 * (x * c.T)
 
     # Rounding errors occasionally cause negative entries in n2
@@ -59,7 +59,7 @@ def pdinv(A):
         Ainv = vh.T.dot(np.diag(1 / s)).dot(u.T)
     except Exception as e:
         raise e
-    return np.matlib.asmatrix(Ainv)
+    return np.asmatrix(Ainv)
 
 
 def eigdec(x, N, evals_only=False):
@@ -431,9 +431,9 @@ def gpr_multi_new(logtheta=None, covfunc=None, x=None, y=None, xstar=None, nargo
         out1 = 0.5 * np.trace(y.T * alpha) + m * np.sum(np.log(np.diag(L)), axis=0) + 0.5 * m * n * np.log(
             2 * np.pi)
         if nargout == 2:  # ... and if requested, its partial derivatives
-            out2 = np.matlib.zeros((logtheta.shape[0], 1))  # set the size of the derivative vector
+            out2 = np.zeros((logtheta.shape[0], 1))  # set the size of the derivative vector
             W = m * (np.linalg.inv(L.T) * (
-                        np.linalg.inv(L) * np.matlib.eye(n))) - alpha * alpha.T  # precompute for convenience
+                        np.linalg.inv(L) * np.eye(n))) - alpha * alpha.T  # precompute for convenience
             for i in range(len(out2) - 1, len(out2)):
                 temp = list(covfunc.copy())
                 temp.append(logtheta)
@@ -504,15 +504,15 @@ def covNoise(logtheta=None, x=None, z=None, nargout=1):
 
         return A
 
-    s2 = np.exp(2 * logtheta)[0, 0] # noise variance
+    s2 = np.exp(2 * logtheta) # noise variance
 
     if (logtheta is not None and x is not None and z is None): # compute covariance matrix
-        A = s2 * np.matlib.eye(x.shape[0])
+        A = s2 * np.eye(x.shape[0])
     elif (nargout == 2): # compute test set covariances
         A = s2
         B = 0   # zeros cross covariance by independence
     else: # compute derivative matrix
-        A = 2 * s2 * np.matlib.eye(x.shape[0])
+        A = 2 * s2 * np.eye(x.shape[0])
 
 
     if (nargout == 2):
@@ -551,21 +551,21 @@ def covSEard(loghyper=None, x=None, z=None, nargout=1):
     sf2 = np.exp(2 * loghyper[D]) # signal variance
 
     if (loghyper is not None and x is not None):
-        K = sf2 * np.exp(-sq_dist(np.matlib.diag(1 / ell) * x.T ) /2)
+        K = sf2 * np.exp(-sq_dist(np.diag(1 / ell) * x.T ) /2)
         A = K
     elif nargout == 2: # compute test set covariances
-        A = sf2 * np.matlib.ones((z, 1))
-        B = sf2 * np.exp(-sq_dist(np.matlib.diag(1 / ell) * x.T, np.matlib.diag( 1 /ell ) *z) / 2)
+        A = sf2 * np.ones((z, 1))
+        B = sf2 * np.exp(-sq_dist(np.diag(1 / ell) * x.T, np.diag( 1 /ell ) *z) / 2)
     else:
         # check for correct dimension of the previously calculated kernel matrix
         if (K.shape[0] != n or K.shape[1] != n):
-            K = sf2 * np.exp(-sq_dist(np.matlib.diag(1 / ell) * x.T ) /2)
+            K = sf2 * np.exp(-sq_dist(np.diag(1 / ell) * x.T ) /2)
 
         if z <= D:  # length scale parameters
             A = np.multiply(K, sq_dist(x[:, z].T / ell[z]))
         else: # magnitude parameter
             A = 2 * K
-            K = np.matlib.empty((0, 0))
+            K = np.empty((0, 0))
 
     if (nargout == 2):
         return A, B
@@ -609,13 +609,13 @@ def sq_dist(a, b=None, Q=None):
         raise Exception('Error: column lengths must agree.')
 
     if Q is None:
-        C = np.matlib.zeros((n, m))
+        C = np.zeros((n, m))
         for d in range(D):
             temp = np.tile(b[d, :], (n, 1)) - np.tile(a[d, :].T, (1, m))
             C = C + np.multiply(temp, temp)
     else:
         if (n,m) == Q.shape:
-            C = np.matlib.zeros((D, 1))
+            C = np.zeros((D, 1))
             for d in range(D):
                 temp = np.tile(b[d,:], (n, 1)) - np.tile(a[d,:].T, (1, m))
                 temp = np.multiply(temp, temp)
@@ -655,7 +655,7 @@ def covSum(covfunc, logtheta=None, x=None, z=None, nargout=1):
     v = np.asarray(v)
 
     if (logtheta is not None and x is not None and z is None):  # compute covariance matrix
-        A = np.matlib.zeros((n, n))  # allocate space for covariance matrix
+        A = np.zeros((n, n))  # allocate space for covariance matrix
         for i in range(len(covfunc)):  # iteration over summand functions
             f = covfunc[i]
             temp = [f]
@@ -667,8 +667,8 @@ def covSum(covfunc, logtheta=None, x=None, z=None, nargout=1):
     if (
             logtheta is not None and x is not None and z is not None):  # compute derivative matrix or test set covariances
         if nargout == 2:  # compute test set cavariances
-            A = np.matlib.zeros((z, 1))
-            B = np.matlib.zeros((x.shape[0], z))  # allocate space
+            A = np.zeros((z, 1))
+            B = np.zeros((x.shape[0], z))  # allocate space
             for i in range(len(covfunc)):
                 f = covfunc[i]
                 temp = [f]
