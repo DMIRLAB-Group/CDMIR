@@ -16,6 +16,7 @@ def plot_graph(graph, layout, is_latent=None, figsize=None, dpi=300, node_radius
     pos = layout(graph)
     node_str = [str(node) for node in graph.nodes]
     for i, node in enumerate(graph.nodes):
+        node = str(node)
         if node in is_latent:
             node_fill_color = 'white'
         else:

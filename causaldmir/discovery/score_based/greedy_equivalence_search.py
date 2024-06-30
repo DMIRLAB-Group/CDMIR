@@ -334,7 +334,7 @@ def dist2(x, c):
     # D = DIST2(X, C) takes two matrices of vectors and calculates the
     # squared Euclidean distance between them.  Both matrices must be of
     # the same column dimension.  If X has M rows and N columns, and C has
-    # L rows and N columns, then the result has M rows and L columns.  The
+    # L rows and N columns, then the results has M rows and L columns.  The
     # I, Jth entry is the  squared distance from the Ith row of X to the
     # Jth row of C.
     #
@@ -347,9 +347,10 @@ def dist2(x, c):
     if (dimx != dimc):
         raise Exception('Data dimension does not match dimension of centres')
 
-    n2 = (np.matlib.ones((ncentres, 1)) * np.sum(np.multiply(x, x).T, axis=0)).T + \
-         np.matlib.ones((ndata, 1)) * np.sum(np.multiply(c, c).T, axis=0) - \
-         2 * (x * c.T)
+    n2 = (np.ones((ncentres, 1)) * np.sum(np.multiply(x, x).T, axis=0)).T + \
+         (np.ones((ndata, 1)) * np.sum(np.multiply(c, c).T, axis=0)) - \
+         2 * (x @ c.T)
+
 
     # Rounding errors occasionally cause negative entries in n2
     n2[np.where(n2 < 0)] = 0

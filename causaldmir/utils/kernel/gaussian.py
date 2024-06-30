@@ -41,10 +41,10 @@ class GaussianKernel(BaseKernel):
 
     def __kernel_func(self, x: ndarray, y: ndarray):
         if y is None:
-            sq_dists = squareform(pdist(x, 'sqeuclidean'))
+            sq_dists = squareform(pdist(x, 'sqeuclidean')) #计算矩阵每行与其他行之间的距离，然后把距离转化成方阵
         else:
-            assert (shape(x)[1] == shape(y)[1])
-            sq_dists = cdist(x, y, 'sqeuclidean')
+            assert (shape(x)[1] == shape(y)[1]) #如果x和y的列数一样
+            sq_dists = cdist(x, y, 'sqeuclidean')#计算两个集合向量之间的距离
         k = exp(-0.5 * sq_dists * self.width)
         return k
 
