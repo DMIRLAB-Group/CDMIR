@@ -1,9 +1,9 @@
 import numpy as np
-from causaldmir.utils.independence import Dsep
+
+from causaldmir.discovery.constraint.pc import PC
 from causaldmir.graph.digraph import DiGraph
 from causaldmir.graph.edge import Edge
-from causaldmir.utils.independence import FisherZ
-from causaldmir.discovery.constraint.pc import PC
+from causaldmir.utils.independence import Dsep, FisherZ
 
 def test_desp():
     np.random.seed(10)

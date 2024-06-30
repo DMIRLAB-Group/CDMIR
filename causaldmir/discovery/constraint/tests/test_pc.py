@@ -9,7 +9,8 @@ from numpy.random import normal
 from scipy import stats
 
 from causaldmir.discovery.constraint import PC
-from causaldmir.graph import DiGraph, Edge, dag2cpdag
+from causaldmir.graph import DiGraph, Edge
+from causaldmir.graph.dag2cpdag import dag2cpdag
 from causaldmir.utils.independence import Dsep, FisherZ
 from causaldmir.utils.metrics.graph_evaluation import graph_equal
 

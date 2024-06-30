@@ -8,10 +8,11 @@
 # Copyright:   (c) YY 2022
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
-import VanishedTest as VT
+import itertools
+
 import numpy as np
 import pandas as pd
-import itertools
+import VanishedTest as VT
 
 '''
 Function: Check whether a variable set C is a causal cluster

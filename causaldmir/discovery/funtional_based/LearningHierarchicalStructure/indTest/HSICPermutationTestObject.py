@@ -3,8 +3,9 @@ Created on 17 Nov 2015
 
 @author: qinyi
 '''
-from HSICTestObject import HSICTestObject
 import time
+
+from HSICTestObject import HSICTestObject
 
 
 class HSICPermutationTestObject(HSICTestObject):

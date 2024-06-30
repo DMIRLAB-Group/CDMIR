@@ -1,12 +1,13 @@
-from numpy import shape, fill_diagonal, zeros, mean, sqrt,identity,dot,diag
-from numpy.random import permutation, randn
-from independence_testing.TestObject import TestObject
-import numpy as np
-from abc import abstractmethod
-from kerpy.Kernel import Kernel
 import time
-from scipy.linalg import sqrtm,inv
-from numpy.linalg import eigh,svd
+from abc import abstractmethod
+
+import numpy as np
+from independence_testing.TestObject import TestObject
+from kerpy.Kernel import Kernel
+from numpy import diag, dot, fill_diagonal, identity, mean, shape, sqrt, zeros
+from numpy.linalg import eigh, svd
+from numpy.random import permutation, randn
+from scipy.linalg import inv, sqrtm
 
 
 

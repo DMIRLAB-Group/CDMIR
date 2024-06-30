@@ -1,8 +1,8 @@
+import GIN2 as GIN
+import Infer_Causal_Order
 import numpy as np
 import pandas as pd
-import GIN2 as GIN
 import Utils
-import Infer_Causal_Order
 
 def Orientation_Cluster(Ora_data, LatentIndex, PureClusters, AllCausalCluster):
     pass

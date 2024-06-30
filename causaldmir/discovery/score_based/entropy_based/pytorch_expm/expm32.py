@@ -8,14 +8,14 @@ Adaptation of expm and expm_frechet in numpy for torch
 #          Jake Vanderplas, August 2012 (Sparse Updates)
 #
 
-from __future__ import division, print_function, absolute_import
+from __future__ import absolute_import, division, print_function
 
 import math
 
 import numpy as np
+import scipy.special
 
 import torch
-import scipy.special
 
 def _onenorm_matrix_power_nnm(A, p):
     """

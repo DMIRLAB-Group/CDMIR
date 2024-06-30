@@ -1,9 +1,10 @@
+import random
+from typing import List, Optional, Sequence, Tuple, Union
+
+import networkx as nx
 import numpy as np
 import pandas as pd
-import networkx as nx
 import torch
-import random
-from typing import List, Tuple, Union, Optional, Sequence
 
 
 def set_random_seed(seed, set_torch_seed=True):

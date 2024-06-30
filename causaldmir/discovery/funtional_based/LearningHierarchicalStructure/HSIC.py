@@ -19,6 +19,7 @@ thresh		test threshold for level alpha test
 #HSIC with pval return
 
 from __future__ import division
+
 import numpy as np
 from scipy.stats import gamma
 

@@ -4,7 +4,7 @@ from math import floor
 from typing import Iterable
 
 import numpy as np
-from numpy import ndarray, shape, asmatrix
+from numpy import asmatrix, ndarray, shape
 from numpy.linalg import inv
 from pandas import DataFrame
 

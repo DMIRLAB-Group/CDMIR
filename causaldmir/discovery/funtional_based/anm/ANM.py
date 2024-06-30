@@ -2,9 +2,9 @@
 Additive Noise Model.
 """
 
+import numpy as np
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.preprocessing import scale
-import numpy as np
 
 
 def rbf_dot2(p1, p2, deg):
@@ -72,7 +72,7 @@ def FastHsicTestGamma(X, Y, sig=[-1, -1], maxpnt=200):
 def normalized_hsic(x, y):
     x = (x - np.mean(x)) / np.std(x)
     y = (y - np.mean(y)) / np.std(y)
-    h = FastHsicTestGamma(x, y)
+    h = FastHsicTestGamma(x, y, maxpnt=2000)
 
     return h
 
@@ -92,16 +92,15 @@ class ANM(object):
         x = scale(x).reshape((-1, 1))
         y = scale(y).reshape((-1, 1))
         # calculate the x->y score
-        p_value_forward = self.anm_score(x, y)
+        nonindepscore_forward = self.anm_score(x, y)
         # calculate the y->x score
-        p_value_backward = self.anm_score(y, x)
+        nonindepscore_backward = self.anm_score(y, x)
 
-        return p_value_forward, p_value_backward
+        return nonindepscore_forward, nonindepscore_backward
 
     def anm_score(self, x, y):
         gp = GaussianProcessRegressor().fit(x, y)
         y_predict = gp.predict(x)
+        nonindepscore = normalized_hsic(y_predict - y, x)
 
-        indepscore = normalized_hsic(y - y_predict, x)
-
-        return indepscore
+        return nonindepscore

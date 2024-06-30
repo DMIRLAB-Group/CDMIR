@@ -3,7 +3,7 @@ import copy
 from causaldmir.utils import data_form_converter_for_class_method
 from causaldmir.utils.independence import ConditionalIndependentTest
 
-from .adjacency_search import adjacency_search
+from causaldmir.discovery.constraint.adjacency_search import adjacency_search
 
 
 class PC(object):

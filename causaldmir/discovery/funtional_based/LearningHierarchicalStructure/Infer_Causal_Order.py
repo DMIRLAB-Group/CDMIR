@@ -1,6 +1,6 @@
+import GIN2 as GIN  #GIN based on mutual information
 import numpy as np
 import pandas as pd
-import GIN2 as GIN #GIN based on mutual information
 
 
 # identifying causal order by identifying root node recursively.

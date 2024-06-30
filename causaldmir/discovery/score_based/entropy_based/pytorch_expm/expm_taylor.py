@@ -1,5 +1,6 @@
-import torch
 import math
+
+import torch
 
 degs = [1, 2, 4, 8, 12, 18]
 

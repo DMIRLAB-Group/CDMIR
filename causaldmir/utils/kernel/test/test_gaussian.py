@@ -1,5 +1,6 @@
-from causaldmir.utils.kernel.gaussian import GaussianKernel
 import numpy as np
+
+from causaldmir.utils.kernel.gaussian import GaussianKernel
 
 #arr1 = np.array([[1, 2, 3, 4], [1, 3, 4, 5]])
 #arr2 = np.array([[1, 2, 3, 4], [3, 4, 5, 6]])

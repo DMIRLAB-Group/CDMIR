@@ -1,4 +1,5 @@
 from unittest import TestCase
+
 import numpy as np
 
 from causaldmir.datasets.simlulators import TimeLagSimulator

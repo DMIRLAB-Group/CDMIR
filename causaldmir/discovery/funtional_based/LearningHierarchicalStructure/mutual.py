@@ -7,11 +7,11 @@ from several papers (see in the code).
 These computations rely on nearest-neighbor statistics
 '''
 import numpy as np
-
-from scipy.special import gamma,psi
+from numpy import pi
 from scipy import ndimage
 from scipy.linalg import det
-from numpy import pi
+
+from scipy.special import gamma, psi
 
 from sklearn.neighbors import NearestNeighbors
 

@@ -1,13 +1,14 @@
 import numpy as np
+import pandas as pd
 import torch
 import torch.nn as nn
-from torch.nn.parameter import Parameter
 import torch.optim as optim
 import torch.utils.data as Data
+from torch.nn.parameter import Parameter
+from torch.optim import LBFGS
+
 from . import utils
 from .lbfgsb_scipy import LBFGSBScipy
-from torch.optim import LBFGS
-import pandas as pd
 
 debug = False
 is_cuda = False

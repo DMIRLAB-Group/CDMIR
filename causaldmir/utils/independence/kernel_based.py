@@ -4,15 +4,16 @@ from abc import ABC
 from typing import List, Tuple
 
 import numpy as np
-from numpy import ndarray, isnan, trace, shape, sqrt
+from numpy import isnan, ndarray, shape, sqrt, trace
 from numpy.linalg import eigh, eigvalsh
 from pandas import DataFrame
-from scipy.stats import zscore, gamma
+from scipy.stats import gamma, zscore
 from sklearn.gaussian_process import GaussianProcessRegressor
-from sklearn.gaussian_process.kernels import RBF, WhiteKernel, ConstantKernel
+from sklearn.gaussian_process.kernels import ConstantKernel, RBF, WhiteKernel
+
+from ..kernel import BaseKernel, GaussianKernel
 
 from ._base import BaseConditionalIndependenceTest
-from ..kernel import BaseKernel, GaussianKernel
 
 
 class KCI(BaseConditionalIndependenceTest):

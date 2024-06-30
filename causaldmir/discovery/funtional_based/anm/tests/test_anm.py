@@ -1,7 +1,9 @@
-from causaldmir.discovery.funtional_based.anm.ANM import ANM
+from unittest import TestCase
+
 import numpy as np
 import pandas as pd
-from unittest import TestCase
+
+from causaldmir.discovery.funtional_based.anm.ANM import ANM
 
 
 class TestANM(TestCase):
@@ -12,6 +14,5 @@ class TestANM(TestCase):
         X = np.random.uniform(size=10000)
         Y = np.power(X, 3) + np.random.uniform(size=10000)
         anm = ANM()
-        p_value_forward, p_value_backward = anm.cause_or_effect(X, Y)
-
-        assert  p_value_forward < p_value_backward
+        nonindepscore_forward, nonindepscore_backward = anm.cause_or_effect(X, Y)
+        assert nonindepscore_forward < nonindepscore_backward

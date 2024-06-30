@@ -4,12 +4,12 @@ from math import floor
 from typing import Iterable
 
 import numpy as np
-from numpy import ndarray, corrcoef, shape, log, mat, ix_, asmatrix
+from numpy import asmatrix, corrcoef, ix_, log, mat, ndarray, shape
 from numpy.linalg import inv
 from pandas import DataFrame
 
 from ._base import BaseLocalScoreFunction
-from .score_utils import kernel, eigdec, minimize, gpr_multi_new
+from .score_utils import eigdec, gpr_multi_new, kernel, minimize
 
 
 class GeneralMarginalScore(BaseLocalScoreFunction):

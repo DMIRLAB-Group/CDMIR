@@ -1,8 +1,9 @@
-import pandas as pd
-import numpy as np
-from tqdm import tqdm
-import networkx as nx
 from itertools import count, product
+
+import networkx as nx
+import numpy as np
+import pandas as pd
+from tqdm import tqdm
 
 
 

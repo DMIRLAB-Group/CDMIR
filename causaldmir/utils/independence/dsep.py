@@ -1,8 +1,7 @@
 from typing import Iterable
 
 from causaldmir.graph import DiGraph
-
-from .basic_independence import ConditionalIndependentTest
+from causaldmir.utils.independence.basic_independence import ConditionalIndependentTest
 
 
 class Dsep(ConditionalIndependentTest):

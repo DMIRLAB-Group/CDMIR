@@ -1,9 +1,10 @@
-import VanishedTest as VT
+import itertools
+
 import numpy as np
 import pandas as pd
-import itertools
-import Utils
 import UpdataData
+import Utils
+import VanishedTest as VT
 
 
 

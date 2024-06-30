@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from numpy import (array, concatenate, corrcoef, ix_, log1p, ndarray, reshape, sqrt)
+from numpy import array, concatenate, corrcoef, ix_, log1p, ndarray, reshape, sqrt
 from numpy.linalg import inv
 from scipy.stats import norm
 

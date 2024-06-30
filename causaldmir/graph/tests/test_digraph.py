@@ -1,9 +1,8 @@
+import logging
+from copy import deepcopy
 from unittest import TestCase
 
 from .. import DiGraph, Edge, Mark
-from copy import deepcopy
-
-import logging
 
 logging.basicConfig(level=logging.DEBUG,
                     format=' %(levelname)s :: %(message)s',

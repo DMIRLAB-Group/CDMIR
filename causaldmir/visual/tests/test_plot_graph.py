@@ -1,7 +1,9 @@
 from unittest import TestCase
 
-from ...graph import Graph, Edge, Mark
-from .. import circular_layout, plot_graph
+from causaldmir.visual.graph_layout import circular_layout
+from causaldmir.visual.plot_graph import plot_graph
+
+from causaldmir.graph import Edge, Graph, Mark
 
 
 class TestPlotGraph(TestCase):

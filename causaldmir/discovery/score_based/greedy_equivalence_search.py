@@ -6,11 +6,11 @@ from copy import deepcopy
 
 import numpy as np
 
-from causaldmir.graph import dag2cpdag, Edge, Mark
+from causaldmir.graph import Edge, Mark
+from causaldmir.graph.dag2cpdag import dag2cpdag
 from causaldmir.graph.pdag2dag import pdag2dag
-from causaldmir.utils.local_score import *
+from causaldmir.utils.local_score import BaseLocalScoreFunction, BDeuScore, BICScore, GeneralCVScore, MultiCVScore, GeneralMarginalScore, MultiMarginalScore
 from causaldmir.graph.pdag import PDAG
-
 
 def kernel(x, xKern, theta):
     # KERNEL Compute the rbf kernel

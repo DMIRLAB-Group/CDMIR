@@ -1,5 +1,5 @@
-import torch
 import scipy.optimize as sopt
+import torch
 
 
 class LBFGSBScipy(torch.optim.Optimizer):

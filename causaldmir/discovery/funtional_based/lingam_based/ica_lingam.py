@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+import itertools
+
 import numpy as np
+import scipy.stats
 from numpy import ndarray
 from pandas import DataFrame
 from sklearn.decomposition import FastICA
-import itertools
-import scipy.stats
 from sklearn.linear_model import LinearRegression
 
 

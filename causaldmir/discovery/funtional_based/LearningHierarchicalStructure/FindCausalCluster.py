@@ -1,10 +1,11 @@
-import VanishedTest as VT
-import numpy as np
-import pandas as pd
 import itertools
-import TetradMethod
+
 import MergeCluster
+import numpy as np
 import Overlap_Merge
+import pandas as pd
+import TetradMethod
+import VanishedTest as VT
 
 def FindCausalCluster(data, PureCluster, ImpureCluster, alpha=0.01):
     '''

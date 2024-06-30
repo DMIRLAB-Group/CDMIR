@@ -1,10 +1,11 @@
-from locally_connected import LocallyConnected
-from lbfgsb_scipy import LBFGSBScipy
+import math
+
+import numpy as np
 import torch
 import torch.nn as nn
-import numpy as np
-import math
 import utils as utils
+from lbfgsb_scipy import LBFGSBScipy
+from locally_connected import LocallyConnected
 
 
 class NotearsMLP(nn.Module):

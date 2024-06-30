@@ -1,11 +1,9 @@
-from unittest import TestCase
-
-from .. import Graph
-from .. import Edge
-from .. import Mark
+import logging
 
 from copy import deepcopy
-import logging
+from unittest import TestCase
+
+from .. import Edge, Graph, Mark
 
 logging.basicConfig(level=logging.DEBUG,
                     format=' %(levelname)s :: %(message)s',

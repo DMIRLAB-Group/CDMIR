@@ -1,6 +1,6 @@
+import mutual as MI
 import numpy as np
 import pandas as pd
-import mutual as MI
 from sklearn import metrics
 
 #estimating mutual information by sklearn

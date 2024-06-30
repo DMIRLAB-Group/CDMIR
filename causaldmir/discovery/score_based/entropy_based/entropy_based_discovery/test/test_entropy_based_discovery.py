@@ -1,10 +1,11 @@
 import logging
 from unittest import TestCase
+
+from ..linear_ent import run
+from ..nonlinear_ent import run as run_nonlinear
 # D:\letscausalleaern\causal-dmir\causaldmir\discovery\score_based\entropy_based\entropy_based_discovery\test\test_entropy_based_discovery.py
 
 from ..utils import set_seed
-from ..linear_ent import run
-from ..nonlinear_ent import run as run_nonlinear
 
 logging.basicConfig(level=logging.DEBUG,
                     format=' %(levelname)s :: %(message)s',

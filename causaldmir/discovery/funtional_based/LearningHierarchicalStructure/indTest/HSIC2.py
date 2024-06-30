@@ -1,13 +1,13 @@
 #API for HSIC test
 import sys
 sys.path.append("./indTest")
-from kerpy.GaussianKernel import GaussianKernel
-from HSICTestObject import HSICTestObject
-from numpy import shape,savetxt,loadtxt,transpose,shape,reshape,concatenate
-from independence_testing.HSICSpectralTestObject import HSICSpectralTestObject
-from independence_testing.HSICBlockTestObject import HSICBlockTestObject
 import numpy as np
 import pandas as pd
+from HSICTestObject import HSICTestObject
+from independence_testing.HSICBlockTestObject import HSICBlockTestObject
+from independence_testing.HSICSpectralTestObject import HSICSpectralTestObject
+from kerpy.GaussianKernel import GaussianKernel
+from numpy import concatenate, loadtxt, reshape, savetxt, shape, shape, transpose
 
 #method 1:HSIC test and return boolean
 #x and y:

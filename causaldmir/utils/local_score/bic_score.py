@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Iterable
 
-from numpy import ndarray, corrcoef, shape, log, mat, ix_
+from numpy import corrcoef, ix_, log, mat, ndarray, shape
 from numpy.linalg import inv
 from pandas import DataFrame
 

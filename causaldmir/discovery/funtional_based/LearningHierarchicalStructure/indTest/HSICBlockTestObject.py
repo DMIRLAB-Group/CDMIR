@@ -1,8 +1,9 @@
-from TestObject import TestObject
-from HSICTestObject import HSICTestObject
-from numpy import mean, sum, zeros, var, sqrt
-from scipy.stats import norm
 import time
+
+from HSICTestObject import HSICTestObject
+from numpy import mean, sqrt, sum, var, zeros
+from scipy.stats import norm
+from TestObject import TestObject
 
 class HSICBlockTestObject(HSICTestObject):
     def __init__(self,num_samples, data_generator=None, kernelX=None, kernelY=None,

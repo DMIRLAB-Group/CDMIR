@@ -1,6 +1,6 @@
 from itertools import combinations, permutations
 
-from causaldmir.graph import PDAG, DiGraph
+from causaldmir.graph import DiGraph, PDAG
 
 
 def dag2cpdag(dag: DiGraph):

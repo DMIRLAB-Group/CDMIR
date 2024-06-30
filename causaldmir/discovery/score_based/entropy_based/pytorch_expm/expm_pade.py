@@ -1,5 +1,5 @@
-import torch
 import numpy as np
+import torch
 
 from expm32 import expm32
 from expm64 import expm64

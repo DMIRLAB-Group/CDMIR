@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from matplotlib import patches
-from numpy import abs, cos, sin, sqrt, sign
+from numpy import abs, cos, sign, sin, sqrt
 
 from causaldmir.graph import Mark
 

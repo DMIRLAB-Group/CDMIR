@@ -3,7 +3,7 @@ from __future__ import annotations
 from math import lgamma
 from typing import Iterable
 
-from numpy import ndarray, shape, log, unique, asarray
+from numpy import asarray, log, ndarray, shape, unique
 from pandas import DataFrame
 
 from ._base import BaseLocalScoreFunction

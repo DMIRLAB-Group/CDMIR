@@ -1,10 +1,11 @@
+from itertools import product
+from typing import List, Optional, Tuple, Union
+
 import networkx as nx
 import numpy as np
-from sklearn.gaussian_process import GaussianProcessRegressor
-from typing import List, Tuple, Union, Optional
 import pandas as pd
-from itertools import product
-from tick.hawkes import SimuHawkes, HawkesKernelExp
+from sklearn.gaussian_process import GaussianProcessRegressor
+from tick.hawkes import HawkesKernelExp, SimuHawkes
 
 try:
     from scipy.special import expit as sigmoid

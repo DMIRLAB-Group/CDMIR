@@ -1,12 +1,11 @@
-from unittest import TestCase
-
-from .. import Edge, DiGraph, PDAG, Graph, Mark
-from ..dag2cpdag import dag2cpdag
-from ..pdag2dag import pdag2dag
+import logging
 
 from copy import deepcopy
+from unittest import TestCase
 
-import logging
+from .. import DiGraph, Edge, Graph, Mark, PDAG
+from ..dag2cpdag import dag2cpdag
+from ..pdag2dag import pdag2dag
 
 logging.basicConfig(level=logging.DEBUG,
                     format=' %(levelname)s :: %(message)s',

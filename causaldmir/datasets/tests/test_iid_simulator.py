@@ -1,13 +1,12 @@
+from unittest import TestCase
+
 import numpy as np
 
 from causaldmir.datasets.simlulators import IIDSimulator
 from causaldmir.datasets.utils import erdos_renyi
 
 
-class TestIIDSimulator:
-
-    pass
-
+class TestIIDSimulator(TestCase):
     def test_simulate_linear_anm_gauss(self):
         n_nodes = 10
         n_edges = 20

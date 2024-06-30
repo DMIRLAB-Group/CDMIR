@@ -1,14 +1,16 @@
+import random
 from unittest import TestCase
+
 import numpy as np
 import pandas as pd
 from numpy.random import normal
 from scipy import stats
-import random
+
+from causaldmir.discovery.score_based import dist2
 # from causaldmir.discovery.score_based import GES
 from causaldmir.discovery.score_based.greedy_equivalence_search import Score_G
-from causaldmir.utils.local_score import BICScore
-from causaldmir.discovery.score_based import dist2
 from causaldmir.graph.pdag import PDAG
+from causaldmir.utils.local_score import BICScore
 
 class TestGES(TestCase):
     def test_dist2(self):

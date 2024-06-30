@@ -2,8 +2,15 @@ from unittest import TestCase
 
 import numpy as np
 
-from causaldmir.utils.metrics import graph_equal, skeleton_evaluation, arrow_evaluation, directed_edge_evaluation, shd
-from causaldmir.graph import Graph, PDAG, DiGraph, Edge, Mark
+from causaldmir.graph import DiGraph, Edge, Graph, Mark, PDAG
+
+from causaldmir.utils.metrics import (
+    arrow_evaluation,
+    directed_edge_evaluation,
+    graph_equal,
+    shd,
+    skeleton_evaluation,
+)
 
 
 class TestGraphEvaluation(TestCase):

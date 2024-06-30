@@ -8,9 +8,9 @@
 # Copyright:   (c) YY 2021
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
+import GIN
 import numpy as np
 import pandas as pd
-import GIN
 import SimulationData as SD
 
 

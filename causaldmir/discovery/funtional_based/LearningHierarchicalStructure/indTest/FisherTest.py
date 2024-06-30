@@ -1,4 +1,5 @@
 import math
+
 from scipy.stats import chi2
 
 #independent test by Fisher'method

@@ -1,9 +1,10 @@
 from copy import deepcopy
 
-from . import Edge, DiGraph
-from .pdag import PDAG
-from .mark import Mark
 import numpy as np
+
+from . import DiGraph, Edge
+from .mark import Mark
+from .pdag import PDAG
 
 
 # function Gd = PDAG2DAG(G) % transform a PDAG to DAG

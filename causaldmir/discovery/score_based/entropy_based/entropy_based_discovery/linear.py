@@ -1,7 +1,8 @@
 import numpy as np
 import scipy.optimize as sopt
-from scipy.special import expit as sigmoid
 import scipy.sparse.linalg as slin
+from scipy.special import expit as sigmoid
+
 from . import utils as ut
 
 

@@ -3,9 +3,10 @@ Created on 15 Nov 2015
 
 @author: qinyi
 '''
-from HSICTestObject import HSICTestObject
-import numpy as np
 import time
+
+import numpy as np
+from HSICTestObject import HSICTestObject
 
 class HSICSpectralTestObject(HSICTestObject):
 

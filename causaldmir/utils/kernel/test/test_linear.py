@@ -1,6 +1,7 @@
 import numpy as np
-from causaldmir.utils.kernel.linear import LinearKernel
+
 from causaldmir.utils.kernel._base import BaseKernel
+from causaldmir.utils.kernel.linear import LinearKernel
 def test_linear():
 
     arr1=np.array([1,2,3])

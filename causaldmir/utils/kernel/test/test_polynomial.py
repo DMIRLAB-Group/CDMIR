@@ -1,5 +1,6 @@
-from causaldmir.utils.kernel.polynomial import PolynomialKernel
 import numpy as np
+
+from causaldmir.utils.kernel.polynomial import PolynomialKernel
 
 def test_polynomial(): #多项式核函数 (const+x.dot(y.T))^2
     arr1=np.array([[1,2,3]])

@@ -1,13 +1,13 @@
-import numpy as np
+import logging
 
 from unittest import TestCase
+
+import numpy as np
 
 from causaldmir.datasets.simlulators import HawkesSimulator
 from causaldmir.utils.metrics.graph_evaluation import get_performance
 
 from ..SHP import SHP
-
-import logging
 
 logging.basicConfig(level=logging.DEBUG,
             format=' %(levelname)s :: %(message)s',

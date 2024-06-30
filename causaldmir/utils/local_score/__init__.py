@@ -1,6 +1,6 @@
 from ._base import BaseLocalScoreFunction
-from .bic_score import BICScore
 from .bdeu_score import BDeuScore
+from .bic_score import BICScore
 from .cross_validated_base import GeneralCVScore, MultiCVScore
 from .marginal_base import GeneralMarginalScore, MultiMarginalScore
 

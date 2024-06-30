@@ -1,10 +1,11 @@
 
-from scipy.stats import norm
-import scipy
-import numpy as np
-import pandas as pd
 import math
 import random
+
+import numpy as np
+import pandas as pd
+import scipy
+from scipy.stats import norm
 from sklearn.utils import resample
 
 

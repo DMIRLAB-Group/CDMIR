@@ -1,8 +1,9 @@
+import itertools
+from itertools import combinations
+
+import networkx as nx
 import numpy as np
 import pandas as pd
-from itertools import combinations
-import itertools
-import networkx as nx
 
 '''Merge overlap causal cluster'''
 def merge_list(L2):
