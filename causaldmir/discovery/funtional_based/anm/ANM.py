@@ -101,6 +101,7 @@ class ANM(object):
     def anm_score(self, x, y):
         gp = GaussianProcessRegressor().fit(x, y)
         y_predict = gp.predict(x)
-        indepscore = normalized_hsic(y_predict - y, x)
+
+        indepscore = normalized_hsic(y - y_predict, x)
 
         return indepscore

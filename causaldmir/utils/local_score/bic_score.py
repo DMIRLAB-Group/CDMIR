@@ -30,7 +30,7 @@ class BICScore(BaseLocalScoreFunction):
         XX = mat(self.cov[ix_(parent_i, parent_i)])
         H = log(self.cov[i, i] - yX * inv(XX) * yX.T)
 
-        return -(self.sample_count * H + log(self.sample_count) * len(parent_i) * self.lambda_value)
+        return -(self.sample_count * H + log(self.sample_count) * len(parent_i) * self.lambda_value).item()
 
     def __call__(self, i: int, parent_i: Iterable[int], *args, **kwargs):
         return self._score(i, parent_i, self._score_function)
