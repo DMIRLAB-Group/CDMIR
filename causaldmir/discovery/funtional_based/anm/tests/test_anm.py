@@ -10,7 +10,7 @@ class TestANM(TestCase):
         # simulated data y = 3^x + e
         np.random.seed(1000)
         X = np.random.uniform(size=10000)
-        Y = np.power(3, X) + np.random.uniform(size=10000)
+        Y = np.power(X, 3) + np.random.uniform(size=10000)
         anm = ANM()
         p_value_forward, p_value_backward = anm.cause_or_effect(X, Y)
 
