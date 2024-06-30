@@ -33,7 +33,7 @@ class GeneralMarginalScore(BaseLocalScoreFunction):
         width = np.sqrt(0.5 * np.median(dists[np.where(dists > 0)], axis=1)[0, 0])
         width = width * 2.5  # kernel width
         theta = 1 / (width ** 2)
-        H = np.matlib.eye(T) - np.matlib.ones((T, T)) / T
+        H = np.eye(T) - np.ones((T, T)) / T
         Kx, _ = kernel(X, X, (theta, 1))
         Kx = H * Kx * H
 
@@ -46,7 +46,7 @@ class GeneralMarginalScore(BaseLocalScoreFunction):
         if len(parent_i):
             PA = self.data[:, parent_i]
 
-            widthPA = np.matlib.empty((PA.shape[1], 1))
+            widthPA = np.empty((PA.shape[1], 1))
             # set the kernel for PA
             for m in range(PA.shape[1]):
                 G = np.sum((np.multiply(PA[:, m], PA[:, m])), axis=1)
@@ -68,7 +68,7 @@ class GeneralMarginalScore(BaseLocalScoreFunction):
                                         nargout=2)
         else:
             covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']])
-            PA = np.matlib.zeros((T, 1))
+            PA = np.zeros((T, 1))
             logtheta0 = np.asmatrix([100, 0, np.log(np.sqrt(0.1))]).T
             logtheta, fvals, iter = minimize(logtheta0, 'gpr_multi_new', -300, covfunc, PA,
                                              2 * np.sqrt(T) * eix * np.diag(np.sqrt(eig_Kx)) / np.sqrt(eig_Kx[0]))
@@ -122,7 +122,7 @@ class MultiMarginalScore(BaseLocalScoreFunction):
         widthX = np.sqrt(0.5 * np.median(dists[np.where(dists > 0)], axis=1)[0, 0])
         widthX = widthX * 2.5  # kernel width
         theta = 1 / (widthX ** 2)
-        H = np.matlib.eye(T) - np.matlib.ones((T, T)) / T
+        H = np.eye(T) - np.ones((T, T)) / T
         Kx, _ = kernel(X, X, (theta, 1))
         Kx = H * Kx * H
 
@@ -133,9 +133,9 @@ class MultiMarginalScore(BaseLocalScoreFunction):
         eix = eix[:, IIx]
 
         if len(parent_i):
-            widthPA_all = np.matlib.empty((1, 0))
+            widthPA_all = np.empty((1, 0))
             # set the kernel for PA
-            PA_all = np.matlib.empty((self.data.shape[0], 0))
+            PA_all = np.empty((self.data.shape[0], 0))
             for m in range(len(parent_i)):
                 PA = self.data[:, self.d_label[parent_i[m]]]
                 PA_all = np.hstack([PA_all, PA])
@@ -147,7 +147,7 @@ class MultiMarginalScore(BaseLocalScoreFunction):
                 dists = np.reshape(dists, (T ** 2, 1))
                 widthPA = np.sqrt(0.5 * np.median(dists[np.where(dists > 0)], axis=1)[0, 0])
                 widthPA_all = np.hstack(
-                    [widthPA_all, widthPA * np.matlib.ones((1, np.size(self.d_label[parent_i[m]])))])
+                    [widthPA_all, widthPA * np.ones((1, np.size(self.d_label[parent_i[m]])))])
             widthPA_all = widthPA_all * 2.5  # kernel width
             covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']])
             logtheta0 = np.vstack([np.log(widthPA_all.T), 0, np.log(np.sqrt(0.1))])
@@ -159,7 +159,7 @@ class MultiMarginalScore(BaseLocalScoreFunction):
                                         nargout=2)
         else:
             covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']])
-            PA = np.matlib.zeros((T, 1))
+            PA = np.zeros((T, 1))
             logtheta0 = np.asmatrix([100, 0, np.log(np.sqrt(0.1))]).T
             logtheta, fvals, iter = minimize(logtheta0, 'gpr_multi_new', -300, covfunc, PA,
                                              2 * np.sqrt(T) * eix * np.diag(np.sqrt(eig_Kx)) / np.sqrt(eig_Kx[0]))
