@@ -14,4 +14,4 @@ class TestANM(TestCase):
         anm = ANM()
         p_value_forward, p_value_backward = anm.cause_or_effect(X, Y)
 
-        assert p_value_forward < p_value_backward
+        assert  p_value_forward < p_value_backward
