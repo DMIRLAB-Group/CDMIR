@@ -2,7 +2,7 @@ from collections import deque
 from itertools import product
 from typing import Iterable
 
-from . import Edge, Graph, Mark
+from causaldmir.graph import Edge, Graph, Mark
 
 
 class DiGraph(Graph):

@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from ..adapters import data_form_converter_for_class_method
+from causaldmir.utils.adapters import data_form_converter_for_class_method
 
 
 def _stringize_list(z: Iterable[int] = None):

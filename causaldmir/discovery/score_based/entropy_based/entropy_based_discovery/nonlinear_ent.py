@@ -5,9 +5,9 @@ import pandas as pd
 import torch
 import torch.nn as nn
 
-from . import utils
-from .lbfgsb_scipy import LBFGSBScipy
-from .locally_connected import LocallyConnected
+from causaldmir.discovery.score_based.entropy_based.entropy_based_discovery import utils
+from causaldmir.discovery.score_based.entropy_based.entropy_based_discovery.lbfgsb_scipy import LBFGSBScipy
+from causaldmir.discovery.score_based.entropy_based.entropy_based_discovery.locally_connected import LocallyConnected
 
 
 class NotearsMLP(nn.Module):

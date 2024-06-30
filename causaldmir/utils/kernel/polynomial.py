@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from numpy import ndarray
 
-from ._base import BaseKernel
+from causaldmir.utils.kernel._base import BaseKernel
 
 
 class PolynomialKernel(BaseKernel):

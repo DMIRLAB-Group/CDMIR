@@ -3,7 +3,7 @@ import logging
 from copy import deepcopy
 from unittest import TestCase
 
-from .. import Edge, Graph, Mark
+from causaldmir.graph import Edge, Graph, Mark
 
 logging.basicConfig(level=logging.DEBUG,
                     format=' %(levelname)s :: %(message)s',

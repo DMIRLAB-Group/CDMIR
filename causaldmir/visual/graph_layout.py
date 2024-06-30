@@ -2,7 +2,7 @@ from typing import Dict
 
 from numpy import cos, linspace, pi, sin
 
-from ..graph import Graph
+from causaldmir.graph import Graph
 
 
 def circular_layout(graph: Graph, scale=0.45, sort_node=False) -> Dict:

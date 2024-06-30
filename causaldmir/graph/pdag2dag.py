@@ -2,9 +2,9 @@ from copy import deepcopy
 
 import numpy as np
 
-from . import DiGraph, Edge
-from .mark import Mark
-from .pdag import PDAG
+from causaldmir.graph import DiGraph, Edge
+from causaldmir.graph.mark import Mark
+from causaldmir.graph.pdag import PDAG
 
 
 # function Gd = PDAG2DAG(G) % transform a PDAG to DAG

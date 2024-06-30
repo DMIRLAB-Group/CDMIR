@@ -1,8 +1,8 @@
 import logging
 from unittest import TestCase
 
-from ..linear_ent import run
-from ..nonlinear_ent import run as run_nonlinear
+from causaldmir.discovery.score_based.entropy_based.entropy_based_discovery.linear_ent import run
+from causaldmir.discovery.score_based.entropy_based.entropy_based_discovery.nonlinear_ent import run as run_nonlinear
 # D:\letscausalleaern\causal-dmir\causaldmir\discovery\score_based\entropy_based\entropy_based_discovery\test\test_entropy_based_discovery.py
 
 from ..utils import set_seed

@@ -3,7 +3,7 @@ import scipy.optimize as sopt
 import scipy.sparse.linalg as slin
 from scipy.special import expit as sigmoid
 
-from . import utils as ut
+import causaldmir.discovery.score_based.entropy_based.entropy_based_discovery.utils as ut
 
 
 

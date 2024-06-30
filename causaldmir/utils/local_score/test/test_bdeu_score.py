@@ -1,6 +1,6 @@
 import numpy as np
 
-from ..bdeu_score import BDeuScore
+from causaldmir.utils.local_score.bdeu_score import BDeuScore
 
 def test_score_function():
     data = np.array([[5.1, 3.5, 1.4, 0.2],

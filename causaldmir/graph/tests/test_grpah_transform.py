@@ -3,9 +3,9 @@ import logging
 from copy import deepcopy
 from unittest import TestCase
 
-from .. import DiGraph, Edge, Graph, Mark, PDAG
-from ..dag2cpdag import dag2cpdag
-from ..pdag2dag import pdag2dag
+from causaldmir.graph import DiGraph, Edge, Graph, Mark, PDAG
+from causaldmir.graph.dag2cpdag import dag2cpdag
+from causaldmir.graph.pdag2dag import pdag2dag
 
 logging.basicConfig(level=logging.DEBUG,
                     format=' %(levelname)s :: %(message)s',

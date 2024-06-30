@@ -1,6 +1,6 @@
 import numpy as np
 from pandas import DataFrame
-from ..marginal_base import GeneralMarginalScore
+from causaldmir.utils.local_score.marginal_base import GeneralMarginalScore
 
 def test_score_function():
     data = np.array([[5.1, 3.5, 1.4, 0.2],

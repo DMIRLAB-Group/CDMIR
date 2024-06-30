@@ -2,7 +2,7 @@ import logging
 from copy import deepcopy
 from unittest import TestCase
 
-from .. import DiGraph, Edge, Mark
+from causaldmir.graph import DiGraph, Edge, Mark
 
 logging.basicConfig(level=logging.DEBUG,
                     format=' %(levelname)s :: %(message)s',

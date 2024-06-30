@@ -4,8 +4,8 @@ import numpy as np
 import torch
 import torch.nn as nn
 import utils as utils
-from lbfgsb_scipy import LBFGSBScipy
-from locally_connected import LocallyConnected
+from causaldmir.discovery.score_based.entropy_based.entropy_based_discovery.lbfgsb_scipy import LBFGSBScipy
+from causaldmir.discovery.score_based.entropy_based.entropy_based_discovery.locally_connected import LocallyConnected
 
 
 class NotearsMLP(nn.Module):

@@ -1,7 +1,7 @@
 import logging
 from itertools import combinations, permutations
 
-from . import Edge, Graph, Mark
+from causaldmir.graph import Edge, Graph, Mark
 
 
 class PDAG(Graph):

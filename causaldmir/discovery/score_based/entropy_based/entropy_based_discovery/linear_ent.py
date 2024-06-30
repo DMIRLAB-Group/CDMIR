@@ -7,8 +7,8 @@ import torch.utils.data as Data
 from torch.nn.parameter import Parameter
 from torch.optim import LBFGS
 
-from . import utils
-from .lbfgsb_scipy import LBFGSBScipy
+from causaldmir.discovery.score_based.entropy_based.entropy_based_discovery import utils
+from causaldmir.discovery.score_based.entropy_based.entropy_based_discovery.lbfgsb_scipy import LBFGSBScipy
 
 debug = False
 is_cuda = False

@@ -1,7 +1,7 @@
 from typing import Iterable
 
-from .basic_independence import ConditionalIndependentTest
-from .functional import kci
+from causaldmir.utils.independence.basic_independence import ConditionalIndependentTest
+from causaldmir.utils.independence.functional import kci
 
 
 class KCI(ConditionalIndependentTest):

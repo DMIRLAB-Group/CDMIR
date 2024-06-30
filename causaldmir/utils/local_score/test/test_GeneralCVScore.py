@@ -1,6 +1,6 @@
 import numpy as np
 from pandas import DataFrame
-from ..cross_validated_base import GeneralCVScore
+from causaldmir.utils.local_score.cross_validated_base import GeneralCVScore
 
 def test_score_function():
     data = np.array([[5.1, 3.5, 1.4, 0.2],

@@ -4,8 +4,8 @@ from typing import Iterable
 import numpy as np
 import pandas as pd
 
-from .edge import Edge
-from .mark import Mark
+from causaldmir.graph.edge import Edge
+from causaldmir.graph.mark import Mark
 
 
 class Graph(object):

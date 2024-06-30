@@ -4,9 +4,9 @@ from typing import Iterable, List, Tuple
 
 from numpy import corrcoef
 
-from ._base import BaseConditionalIndependenceTest
-from .basic_independence import ConditionalIndependentTest
-from .functional import fisherz_from_corr
+from causaldmir.utils.independence._base import BaseConditionalIndependenceTest
+from causaldmir.utils.independence.basic_independence import ConditionalIndependentTest
+from causaldmir.utils.independence.functional import fisherz_from_corr
 
 
 class FisherZ(ConditionalIndependentTest):

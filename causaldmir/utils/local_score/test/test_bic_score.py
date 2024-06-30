@@ -1,6 +1,6 @@
 import numpy as np
 
-from ..bic_score import BICScore
+from causaldmir.utils.local_score.bic_score import BICScore
 
 def test_score_function():
     data = np.array([[5.1, 3.5, 1.4, 0.2],
