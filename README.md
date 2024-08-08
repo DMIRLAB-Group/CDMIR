@@ -16,3 +16,19 @@ The package is under active development. Feedbacks (issues, suggestiong, etc.) a
 - networkx
 - matplotlib
 - tick
+
+## Contributers
+
+Thanks to the following people for their contributions to this project:
+
+- [@zhi-yi-huang](https://github.com/zhi-yi-huang) - Code Contribution
+- [@WeilinChen507](https://github.com/WeilinChen507)
+- [@wean2016](https://github.com/wean2016)
+- [@Jie-Qiao](https://github.com/Jie-Qiao)
+- [@jinshi201](https://github.com/jinshi201)
+- [@Jie-Qiao](https://github.com/Jie-Qiao) - Test Code Contribution
+- [@chenweiDelight](https://github.com/chenweiDelight) - Code Review
+- [@kanseaveg](https://github.com/kanseaveg)
+- [@jinshi201](https://github.com/jinshi201) - Document Writing
+- [@Boyle-Coffee](https://github.com/)
+- [@zhi-yi-huang](https://github.com/zhi-yi-huang) - Bug Fix
