@@ -15,5 +15,22 @@ The package is under active development. Feedbacks (issues, suggestiong, etc.) a
 - torch>=1.7.1
 - networkx
 - matplotlib
+- tick
 
-test001
+## Contribution
+
+Please feel free to open an issue if you find anything unexpected. And please create pull requests, perhaps after passing unittests in 'tests/', if you would like to contribute to causal-learn. We are always targeting to make our community better!
+
+Thanks to the following people for their contributions to this project:
+
+- [@zhi-yi-huang](https://github.com/zhi-yi-huang) - Code Contribution
+- [@WeilinChen507](https://github.com/WeilinChen507)
+- [@wean2016](https://github.com/wean2016)
+- [@Jie-Qiao](https://github.com/Jie-Qiao)
+- [@jinshi201](https://github.com/jinshi201)
+- [@Jie-Qiao](https://github.com/Jie-Qiao) - Test Code Contribution
+- [@chenweiDelight](https://github.com/chenweiDelight) - Code Review
+- [@kanseaveg](https://github.com/kanseaveg)
+- [@jinshi201](https://github.com/jinshi201) - Document Writing
+- [@Boyle-Coffee](https://github.com/)
+- [@zhi-yi-huang](https://github.com/zhi-yi-huang) - Bug Fix
