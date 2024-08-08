@@ -17,7 +17,9 @@ The package is under active development. Feedbacks (issues, suggestiong, etc.) a
 - matplotlib
 - tick
 
-## Contributers
+## Contribution
+
+Please feel free to open an issue if you find anything unexpected. And please create pull requests, perhaps after passing unittests in 'tests/', if you would like to contribute to causal-learn. We are always targeting to make our community better!
 
 Thanks to the following people for their contributions to this project:
 
