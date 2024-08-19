@@ -1,9 +1,9 @@
-# causal-DMIR: Causal Discovery, Modeling and Reasoning 
+# CDMIR: Causal Discovery, Modeling and Reasoning 
 
-causal-dmir is a python package for causal discovery, modeling and reasoning that is developed from [DMIR Lab](https://dmir.gdut.edu.cn/), GDUT. 
+CDMIR is a python package for causal discovery, modeling and reasoning that is developed from [DMIR Lab](https://dmir.gdut.edu.cn/), GDUT. 
 
 The package is under active development. Feedbacks (issues, suggestiong, etc.) are highly encouraged.
-![causal-discovery](https://github.com/DMIRLAB-Group/CDMIR/blob/main/images/causal-discovery.png)
+![causal-discovery](./images/causal-discovery.png)
 
 ## Requirements
 
@@ -19,7 +19,7 @@ The package is under active development. Feedbacks (issues, suggestiong, etc.) a
 
 ## Contribution
 
-Please feel free to open an issue if you find anything unexpected. And please create pull requests, perhaps after passing unittests in 'tests/', if you would like to contribute to causal-learn. We are always targeting to make our community better!
+Please feel free to open an issue if you find anything unexpected. And please create pull requests, perhaps after passing unittests in 'tests/', if you would like to contribute to cdmir. We are always targeting to make our community better!
 
 Thanks to the following people for their contributions to this project:
 
