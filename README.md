@@ -25,8 +25,9 @@ Coordinators: Wei Chen, Zhiyi Huang, Qian Huang
 
 Thanks to the following developers for this project:
 
-- [@chenweiDelight](https://github.com/chenweiDelight) - Coordinate, Code Review
-- [@zhi-yi-huang](https://github.com/zhi-yi-huang) - Bug Fix
+- [@chenweiDelight](https://github.com/chenweiDelight)
+- [@zhi-yi-huang](https://github.com/zhi-yi-huang)
+- [@miumiujiang12138](https://github.com/miumiujiang12138)
 - [@WeilinChen507](https://github.com/WeilinChen507) 
 - [@wean2016](https://github.com/wean2016) 
 - [@Jie-Qiao](https://github.com/Jie-Qiao)  
