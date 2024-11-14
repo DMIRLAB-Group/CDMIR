@@ -12,11 +12,11 @@ except IOError:
 
 setup(
     name="CDMIR",
-    version="0.0.2",
+    version="0.0.3",
     description="A pip package",
     license="GPL",
     author="DMIRLab",
-    packages=find_packages(),
+    packages=find_packages(exclude=["tests", "tests.*"]),
     install_requires=[
         'numpy',
         'pandas',
