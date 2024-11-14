@@ -4,7 +4,7 @@ from unittest import TestCase
 from cdmir.discovery.score_based.entropy_based.entropy_based_discovery.linear_ent import run
 from cdmir.discovery.score_based.entropy_based.entropy_based_discovery.nonlinear_ent import run as run_nonlinear
 
-from ..utils import set_seed
+from cdmir.discovery.score_based.entropy_based.entropy_based_discovery.utils import set_seed
 
 logging.basicConfig(level=logging.DEBUG,
                     format=' %(levelname)s :: %(message)s',

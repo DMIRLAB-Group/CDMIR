@@ -7,7 +7,7 @@ import numpy as np
 from cdmir.datasets.simlulators import HawkesSimulator
 from cdmir.utils.metrics.graph_evaluation import get_performance
 
-from ..SHP import SHP
+from cdmir.discovery.point_process.SHP import SHP
 
 logging.basicConfig(level=logging.DEBUG,
             format=' %(levelname)s :: %(message)s',
