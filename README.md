@@ -21,7 +21,7 @@ The package is under active development. Feedbacks (issues, suggestiong, etc.) a
 
 Team Leaders: Ruichu Cai, Zhifeng Hao
 
-Coordinators: Wei Chen, Zhiyi Huang, Qian Huang
+Coordinators: Wei Chen
 
 Thanks to the following developers for this project:
 
