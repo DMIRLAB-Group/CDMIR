@@ -3,8 +3,8 @@ import pandas as pd
 try:
 	import cdmir.discovery.funtional_based.LearningHierarchicalStructure.indTest.HSIC2 as hsic
 except ImportError:
-    import HSIC as hsic
-import independence as ID
+    import cdmir.discovery.funtional_based.LearningHierarchicalStructure.indTest.HSIC as hsic
+import cdmir.discovery.funtional_based.LearningHierarchicalStructure.indTest.independence as ID
 
 
 #GIN by fast HSIC
