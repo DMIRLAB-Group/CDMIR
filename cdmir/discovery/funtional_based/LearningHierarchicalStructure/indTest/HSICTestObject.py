@@ -2,8 +2,8 @@ import time
 from abc import abstractmethod
 
 import numpy as np
-from independence_testing.TestObject import TestObject
-from kerpy.Kernel import Kernel
+from cdmir.discovery.funtional_based.LearningHierarchicalStructure.indTest.TestObject import TestObject
+from cdmir.utils.kernel._base import BaseKernel
 from numpy import diag, dot, fill_diagonal, identity, mean, shape, sqrt, zeros
 from numpy.linalg import eigh, svd
 from numpy.random import permutation, randn
@@ -61,8 +61,8 @@ class HSICTestObject(TestObject):
     
     @staticmethod
     def HSIC_V_statistic(Kx,Ky):
-        Kxc=Kernel.center_kernel_matrix(Kx)
-        Kyc=Kernel.center_kernel_matrix(Ky)
+        Kxc=BaseKernel.center_kernel_matrix(Kx)
+        Kyc=BaseKernel.center_kernel_matrix(Ky)
         return np.sum(Kxc*Kyc)
     
     
@@ -131,12 +131,12 @@ class HSICTestObject(TestObject):
     
     def HSIC_with_shuffles(self,data_x=None,data_y=None,unbiased=True,num_shuffles=0,
                            estimate_nullvar=False,isBlockHSIC=False):
-        start = time.clock()
+        start = time.perf_counter()
         if data_x is None:
             data_x=self.data_x
         if data_y is None:
             data_y=self.data_y
-        time_passed = time.clock()-start
+        time_passed = time.perf_counter()-start
         if isBlockHSIC:
             Kx, Ky = self.compute_kernel_matrix_on_dataB(data_x,data_y)
         else:
@@ -166,12 +166,12 @@ class HSICTestObject(TestObject):
     
     def HSIC_with_shuffles_rff(self,data_x=None,data_y=None,
                                unbiased=True,num_shuffles=0,estimate_nullvar=False):
-        start = time.clock()
+        start = time.perf_counter()
         if data_x is None:
             data_x=self.data_x
         if data_y is None:
             data_y=self.data_y
-        time_passed = time.clock()-start
+        time_passed = time.perf_counter()-start
         if self.rff:
             phix, phiy = self.compute_rff_on_data(data_x,data_y)
         else:
@@ -204,8 +204,8 @@ class HSICTestObject(TestObject):
             lambdax=np.linalg.eigvalsh(Cx)
             lambday=np.linalg.eigvalsh(Cy)
         else:
-            Kxc = Kernel.center_kernel_matrix(Mx)
-            Kyc = Kernel.center_kernel_matrix(My)
+            Kxc = BaseKernel.center_kernel_matrix(Mx)
+            Kyc = BaseKernel.center_kernel_matrix(My)
             lambdax=np.linalg.eigvalsh(Kxc)
             lambday=np.linalg.eigvalsh(Kyc)
         return lambdax,lambday

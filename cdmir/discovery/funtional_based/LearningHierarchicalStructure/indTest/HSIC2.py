@@ -3,10 +3,10 @@ import sys
 sys.path.append("./indTest")
 import numpy as np
 import pandas as pd
-from HSICTestObject import HSICTestObject
-from independence_testing.HSICBlockTestObject import HSICBlockTestObject
-from independence_testing.HSICSpectralTestObject import HSICSpectralTestObject
-from kerpy.GaussianKernel import GaussianKernel
+from cdmir.discovery.funtional_based.LearningHierarchicalStructure.indTest.HSICTestObject import HSICTestObject
+from cdmir.discovery.funtional_based.LearningHierarchicalStructure.indTest.HSICBlockTestObject import HSICBlockTestObject
+from cdmir.discovery.funtional_based.LearningHierarchicalStructure.indTest.HSICSpectralTestObject import HSICSpectralTestObject
+from cdmir.utils.kernel.gaussian import GaussianKernel
 from numpy import concatenate, loadtxt, reshape, savetxt, shape, shape, transpose
 
 #method 1:HSIC test and return boolean

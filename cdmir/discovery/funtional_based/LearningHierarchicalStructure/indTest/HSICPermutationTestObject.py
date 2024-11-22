@@ -5,7 +5,7 @@ Created on 17 Nov 2015
 '''
 import time
 
-from HSICTestObject import HSICTestObject
+from cdmir.discovery.funtional_based.LearningHierarchicalStructure.indTest.HSICTestObject import HSICTestObject
 
 
 class HSICPermutationTestObject(HSICTestObject):
@@ -24,9 +24,9 @@ class HSICPermutationTestObject(HSICTestObject):
     def compute_pvalue_with_time_tracking(self,data_x=None,data_y=None):
         if data_x is None and data_y is None:
             if not self.streaming and not self.freeze_data:
-                start = time.clock()
+                start = time.perf_counter()
                 self.generate_data()
-                data_generating_time = time.clock()-start
+                data_generating_time = time.perf_counter()-start
                 data_x = self.data_x
                 data_y = self.data_y
             else:
