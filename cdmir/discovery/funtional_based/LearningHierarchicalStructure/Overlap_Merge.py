@@ -6,6 +6,8 @@ import numpy as np
 import pandas as pd
 
 '''Merge overlap causal cluster'''
+
+
 def merge_list(L2):
     l = L2.copy()
 
@@ -40,6 +42,7 @@ def bfs(graph, start):
             queue.extend(graph[vertex] - visited)
     return visited
 
+
 def connected_components(G):
     seen = set()
     for v in G:
@@ -48,16 +51,10 @@ def connected_components(G):
             yield c
             seen.update(c)
 
+
 def graph(edge_list):
     result = {}
     for source, target in edge_list:
         result.setdefault(source, set()).add(target)
         result.setdefault(target, set()).add(source)
     return result
-
-
-
-
-
-
-
