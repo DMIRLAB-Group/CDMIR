@@ -10,9 +10,11 @@ class TestANM(TestCase):
 
     def test_anm_using_simulation(self):
         # simulated data y = 3^x + e
-        np.random.seed(1000)
+        np.random.seed(2025)
         X = np.random.uniform(size=10000)
         Y = np.power(X, 3) + np.random.uniform(size=10000)
         anm = ANM()
         nonindepscore_forward, nonindepscore_backward = anm.cause_or_effect(X, Y)
+        print(nonindepscore_forward)
+        print(nonindepscore_backward)
         assert nonindepscore_forward < nonindepscore_backward
