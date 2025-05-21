@@ -15,6 +15,5 @@ class TestANM(TestCase):
         Y = np.power(X, 3) + np.random.uniform(size=10000)
         anm = ANM()
         nonindepscore_forward, nonindepscore_backward = anm.cause_or_effect(X, Y)
-        print(nonindepscore_forward)
-        print(nonindepscore_backward)
+
         assert nonindepscore_forward < nonindepscore_backward

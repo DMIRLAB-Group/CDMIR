@@ -158,7 +158,7 @@ class MultiMarginalScore(BaseLocalScoreFunction):
                                         2 * np.sqrt(T) * eix * np.diag(np.sqrt(eig_Kx)) / np.sqrt(eig_Kx[0]),
                                         nargout=2)
         else:
-            covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']])
+            covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']], dtype=object)
             PA = np.zeros((T, 1))
             logtheta0 = np.asmatrix([100, 0, np.log(np.sqrt(0.1))]).T
             logtheta, fvals, iter = minimize(logtheta0, 'gpr_multi_new', -300, covfunc, PA,
