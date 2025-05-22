@@ -58,7 +58,7 @@ class GeneralMarginalScore(BaseLocalScoreFunction):
                 widthPA[m] = np.sqrt(0.5 * np.median(dists[np.where(dists > 0)], axis=1)[0, 0])
             widthPA = widthPA * 2.5  # kernel width
 
-            covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']])
+            covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']], dtype=object)
             logtheta0 = np.vstack([np.log(widthPA), 0, np.log(np.sqrt(0.1))])
             logtheta, fvals, iter = minimize(logtheta0, 'gpr_multi_new', -300, covfunc, PA,
                                              2 * np.sqrt(T) * eix * np.diag(np.sqrt(eig_Kx)) / np.sqrt(eig_Kx[0]))
@@ -67,7 +67,7 @@ class GeneralMarginalScore(BaseLocalScoreFunction):
                                         2 * np.sqrt(T) * eix * np.diag(np.sqrt(eig_Kx)) / np.sqrt(eig_Kx[0]),
                                         nargout=2)
         else:
-            covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']])
+            covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']], dtype=object)
             PA = np.zeros((T, 1))
             logtheta0 = np.asmatrix([100, 0, np.log(np.sqrt(0.1))]).T
             logtheta, fvals, iter = minimize(logtheta0, 'gpr_multi_new', -300, covfunc, PA,
@@ -149,7 +149,7 @@ class MultiMarginalScore(BaseLocalScoreFunction):
                 widthPA_all = np.hstack(
                     [widthPA_all, widthPA * np.ones((1, np.size(self.d_label[parent_i[m]])))])
             widthPA_all = widthPA_all * 2.5  # kernel width
-            covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']])
+            covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']], dtype=object)
             logtheta0 = np.vstack([np.log(widthPA_all.T), 0, np.log(np.sqrt(0.1))])
             logtheta, fvals, iter = minimize(logtheta0, 'gpr_multi_new', -300, covfunc, PA_all,
                                              2 * np.sqrt(T) * eix * np.diag(np.sqrt(eig_Kx)) / np.sqrt(eig_Kx[0]))
@@ -158,7 +158,7 @@ class MultiMarginalScore(BaseLocalScoreFunction):
                                         2 * np.sqrt(T) * eix * np.diag(np.sqrt(eig_Kx)) / np.sqrt(eig_Kx[0]),
                                         nargout=2)
         else:
-            covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']])
+            covfunc = np.asarray(['covSum', ['covSEard', 'covNoise']], dtype=object)
             PA = np.zeros((T, 1))
             logtheta0 = np.asmatrix([100, 0, np.log(np.sqrt(0.1))]).T
             logtheta, fvals, iter = minimize(logtheta0, 'gpr_multi_new', -300, covfunc, PA,
