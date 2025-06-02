@@ -26,7 +26,20 @@ def rbf_dot2(p1, p2, deg):
 
 
 def rbf_dot(X, deg):
-    # Set kernel size to median distance between points, if no kernel specified
+    '''
+    Calculate the rbf kernel matrix.
+    Set kernel size to median distance between points, if no kernel specified.
+
+    Parameters
+    ----------
+    X: input data (n_sample,n_features)
+    deg: kernel parameters for X (-1 means set kernel size to median distance between points)
+
+    Returns
+    ---------
+    H: rbf kernel matrix
+    '''
+    
     if X.ndim == 1:
         X = X[:, np.newaxis]
     m = X.shape[0]
@@ -42,6 +55,21 @@ def rbf_dot(X, deg):
 
 
 def FastHsicTestGamma(X, Y, sig=[-1, -1], maxpnt=200):
+    '''
+    Calculate the HSIC statistics between two variables using the rbf kernel.
+    This is a fast implementation of the HSIC statistic using the rbf kernel.
+
+    Parameters
+    ----------
+    X: input data (n,1)or(n,)
+    Y: output data (n,1)or(n,)
+    sig: kernel parameters for X and Y,default = [-1,1]
+    maxpnt: maximum number of points to use,default = 200
+
+    Returns
+    ---------
+    testStat: HSIC statistic
+    '''
 
     m = X.shape[0]
     if m > maxpnt:
@@ -70,6 +98,19 @@ def FastHsicTestGamma(X, Y, sig=[-1, -1], maxpnt=200):
 
 
 def normalized_hsic(x, y):
+    '''
+    Calculate the standardized HSIC statistics
+
+    Parameters
+    ----------
+    x: input data (n,1)or(n,)
+    y: output data (n,1)or(n,)
+
+    Returns
+    ---------
+    h: normalized HSIC statistic
+    '''
+
     x = (x - np.mean(x)) / np.std(x)
     y = (y - np.mean(y)) / np.std(y)
     h = FastHsicTestGamma(x, y, maxpnt=2000)
@@ -78,17 +119,33 @@ def normalized_hsic(x, y):
 
 
 class ANM(object):
-
+    '''
+    Python implementation of additive noise model-based causal discovery.
+    References
+    ----------
+    [1] Hoyer, Patrik O., et al. "Nonlinear causal discovery with additive noise models." NIPS. Vol. 21. 2008.
+    '''
     def __init__(self):
-        """Init the model."""
+        '''
+        Construct the ANM model.
+        '''
         super(ANM, self).__init__()
 
     def cause_or_effect(self, x, y, **kwargs):
-        """
-        Parameters: data_x, data_y
-        Returns: p_value_forward: p value in the x->y direction
-                 p_value_backward: p value in the y->x direction
-        """
+        '''
+        Fit a GP model in two directions and test the independence between the input and estimated noise
+
+        Parameters
+        ---------
+        x: input data (n,)or(n,1)
+        y: output data (n,)or(n,1)
+
+        Returns
+        ---------
+        nonindepscore_forward: HSIC statistic in the x->y direction
+        nonindepscore_backward: HSIC statistic in the y->x direction
+        '''
+        # Standardize the input data        
         x = scale(x).reshape((-1, 1))
         y = scale(y).reshape((-1, 1))
         # calculate the x->y score
@@ -99,8 +156,22 @@ class ANM(object):
         return nonindepscore_forward, nonindepscore_backward
 
     def anm_score(self, x, y):
+        '''
+        Calculate the causal direction score of the ANM model
+
+        Parameters
+        ---------
+        x: input data (n,1)
+        y: output data (n,1)
+
+        Returns
+        ---------
+        nonindepscore: HSIC statistic in the x->y direction
+        '''
+        # fit Gaussian process, including hyperparameter optimization
         gp = GaussianProcessRegressor().fit(x, y)
         y_predict = gp.predict(x)
+        # calculate the normalized HSIC statistic between the estimated noise and the input data
         nonindepscore = normalized_hsic(y_predict - y, x)
 
         return nonindepscore
