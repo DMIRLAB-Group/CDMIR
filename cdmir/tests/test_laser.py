@@ -1,4 +1,4 @@
-from cdmir.estimate.LASER import IVAE_tx_wrapper
+from cdmir.estimate.LASER.laser import IVAE_tx_wrapper
 import numpy as np
 import torch
 import numpy.random as random
