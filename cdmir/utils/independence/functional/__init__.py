@@ -1,2 +1,2 @@
 from .fisherz import fisherz, fisherz_from_corr
-from .kci import kci
+from .kci import KCI
