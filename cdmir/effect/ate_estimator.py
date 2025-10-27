@@ -11,44 +11,45 @@ from sklearn.base import clone
 from scipy.special import expit, logit
 
 def e_x_estimator(x, w):
-    """effect P(W_i=1|X_i=x)"""
+    """estimate P(W_i=1|X_i=x)"""
     log_reg = LogisticRegression().fit(x, w)
     return log_reg
 
 
 def naive_estimator(t, y):
-    """effect E[Y|T=1] - E[Y|T=0]"""
+    """
+    naive estimator of ATE
+    estimate E[Y|T=1] - E[Y|T=0]
+
+    Parameters:
+    ---------
+    t: treatment indicator (n_samples, 1)
+    y: outcome (n_samples, 1)
+
+    Returns:
+    ---------
+    tau: estimated ATE
+    """
+
+    # Get index of treatment = 1 and treatment = 0
     index_t1 = np.squeeze(t == 1)
     index_t0 = np.squeeze(t == 0)
+
+    # Extract Y|T=1 and Y|T=0
     y1 = y[index_t1,]
     y0 = y[index_t0,]
 
+    # Calculate ATE
     tau = np.mean(y1) - np.mean(y0)
     return tau
 
-def ipw_estimator(x, t, y):
-    """effect ATE using ipw method.
 
-    Parameters
-    ----------
-    x : array-like
-        Input data.
-    t : array-like
-        Intervention variable indicator.
-    y : array-like
-        Outcome data.
-    Returns
-    -------
-    ATE : float
-        Normalized inverse probability weighting average treatment effect.
-    """
-    # Fit the input data and intervention variables using logistic regression.
+def ipw_estimator(x, t, y):
+    """estimate ATE using ipw method"""
     propensity_socre_reg = e_x_estimator(x, t)
     propensity_socre = propensity_socre_reg.predict_proba(x)
-    # Propensity score P(T=1|X)
     propensity_socre = propensity_socre[:, 1][:, None]  # prob of treatment=1
 
-    # Normalized inverse probability weighting
     ps1 = 1. / np.sum(t / propensity_socre)
     y1 = ps1 * np.sum(y * t / propensity_socre)
     ps0 = 1. / np.sum((1. - t) / (1. - propensity_socre))
@@ -61,56 +62,58 @@ def ipw_estimator(x, t, y):
 
 
 def s_learner_estimator(x, t, y, regression=LinearRegression()):
-    """ effect E(Y|X,T=1)-E(Y|X,T=0)
-        s_learner: naive estimator using same regression function
+    """ 
+    s_learner: naive estimator using same regression function
+    estimate E(Y|X,T=1)-E(Y|X,T=0)
+
+    Parameters:
+    ---------
+    x: input data (n_samples, n_features)
+    t: treatment indicator (n_samples, 1)
+    y: outcome data (n_samples, 1)
+    regression: regression function, default = LinearRegression()
+
+    Returns:   
+    ---------
+    tau: estimated ATE 
     """
+
+    # Concatenate covariates (X) with treatment indicator (T)
     x_t = np.concatenate((x, t), axis=1)
+
+    # Fit regression model by combined data (X, T) and outcome (Y)
     regression.fit(X=x_t, y=y)
+
+    # Create data for two hypothetical scenarios:
+    # All samples receive treatment (t=1)
     x_t1 = np.concatenate((x, numpy.ones_like(t)), axis=1)
+    # All samples receive treatment (t=0)
     x_t0 = np.concatenate((x, numpy.zeros_like(t)), axis=1)
+
+    # Predict the results under two scenarios
     y1 = regression.predict(X=x_t1)
     y0 = regression.predict(X=x_t0)
 
+    # Calculate ATE
     tau = np.mean(y1 - y0)
     return tau
 
 
 def t_learner_estimator(x, t, y, regression_1=LinearRegression(), regression_0=LinearRegression()):
-    """t_learner: naive estimator using different regression function to calculate the treatment effect.
-
-    Parameters
-    ----------
-    x : array-like
-        Input data.
-    t : array-like
-        Intervention variable indicator.
-    y : array-like
-        Outcome data.
-    regression_1 : The first learner is used for learning in the treatment group.
-    regression_0 : The second learner is used for learning in the control group.
-
-    Returns
-    -------
-    Treatment effect : float
-        Calculate the treatment effect by estimating E(Y|X, T=1) - E(Y|X, T=0).
+    """ estimate E(Y|X,T=1)-E(Y|X,T=0)
+        t_learner: naive estimator using different regression function
     """
-    # Remove single dimension.
     index_t1 = np.squeeze(t == 1)
     index_t0 = np.squeeze(t == 0)
-    # Construct data for the treatment group and control group.
     x_t1 = np.concatenate((x[index_t1,], t[index_t1,]), axis=1)
     x_t0 = np.concatenate((x[index_t0,], t[index_t0,]), axis=1)
-    # Learn the treatment group and control group through the model.
     regression_1.fit(X=x_t1, y=y[index_t1,])
     regression_0.fit(X=x_t0, y=y[index_t0,])
-    # All samples receive the treatment.
     x_t1 = np.concatenate((x, numpy.ones_like(t)), axis=1)
-    # All samples are untreated.
     x_t0 = np.concatenate((x, numpy.zeros_like(t)), axis=1)
-    # Calculate the effect for treated samples using the model trained on the treatment group.
     y1 = regression_1.predict(X=x_t1)
-    # Calculate the effect for untreated samples using the model trained on the control group.
     y0 = regression_0.predict(X=x_t0)
+
     tau = np.mean(y1 - y0)
     return tau
 
@@ -182,22 +185,16 @@ if __name__ == '__main__':
     n, p = 1000, 5
     np.random.seed(42)
     X = np.random.normal(1, 1, (n, p))
-    # 随机生成干预变量
     T = np.random.binomial(1, 0.5, n)
-    # 干预的效应
     tau = X[:, 0]
-    # 潜在结果
     y0 = X @ np.array([1, 2, 0, 0, 0]) + np.random.normal(0, 1, n)
-    # 干预后影响
     y1 = y0 + tau
-    # 观测结果
     Y = T * y1 + (1 - T) * y0
     T,Y = T[:,None],Y[:,None]
 
-
-    # print('groud true  ' + str(np.mean(tau)))
-    # print(naive_estimator(T,Y))
-    # print(s_learner_estimator(X,T,Y))
-    # print(t_learner_estimator(X,T,Y))
-    # print(ipw_estimator(X,T,Y))
-    # print(double_robust_estimator(X,T,Y))
+    print('groud true  ' + str(np.mean(tau)))
+    print(naive_estimator(T,Y))
+    print(s_learner_estimator(X,T,Y))
+    print(t_learner_estimator(X,T,Y))
+    print(ipw_estimator(X,T,Y))
+    print(double_robust_estimator(X,T,Y))
