@@ -1,4 +1,4 @@
-import LearningHierarchicalStructure.mutual as MI
+import cdmir.discovery.funtional_based.LearningHierarchicalStructure.mutual as MI
 import numpy as np
 import pandas as pd
 from sklearn import metrics
