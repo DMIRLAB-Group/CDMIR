@@ -772,7 +772,7 @@ def IVAE_tx_wrapper(data, batch_size=256, max_epoch=2000, n_layers=3, hidden_dim
         optimizer = torch.optim.Adam(params=model.parameters(), lr=learn_rate, weight_decay=weight_decay)
     else:  # default: sgd
         optimizer = torch.optim.SGD(params=model.parameters(), lr=learn_rate, weight_decay=weight_decay)
-    scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, factor=0.9, patience=3, verbose=print_log)
+    scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, factor=0.9, patience=3)
 
     # training loop
     # if print_log:
