@@ -10,7 +10,7 @@ The package is under active development. Feedbacks (issues, suggestiong, etc.) a
 - Python3
 - numpy<=1.26.4
 - pandas
-- scipy>=1.8.*
+- scipy>=1.8.1
 - scikit-learn
 - torch>=1.7.1
 - networkx
@@ -20,9 +20,9 @@ The package is under active development. Feedbacks (issues, suggestiong, etc.) a
 - lingam
 - pgmpy<1.0.0
 - tensorly=0.8.1
-- tqdm=1.1.4
-- KDEpy=4.65.0
-- statsmodel=0.14.4
+- tqdm>=4
+- KDEpy>=1.1.12,<2
+- statsmodels=0.14.4
 
 
 ## Contributors
