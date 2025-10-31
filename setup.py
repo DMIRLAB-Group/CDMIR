@@ -12,7 +12,7 @@ except IOError:
 
 setup(
     name="CDMIR",
-    version="0.0.4",
+    version="0.1.0",
     description="A pip package",
     license="GPL",
     author="DMIRLab",
@@ -25,8 +25,12 @@ setup(
         'torch>=1.7.1',
         'networkx',
         'matplotlib',
-        'tick',
     ],
+    extra_require={
+        "hawkes":[
+            "tick; python_version < '3.12'"
+        ]
+    },
     long_description=long_description,
     long_description_content_type='text/markdown',
     classifiers=[
