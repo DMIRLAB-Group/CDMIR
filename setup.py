@@ -12,7 +12,7 @@ except IOError:
 
 setup(
     name="CDMIR",
-    version="0.1.0",
+    version="0.1.1",
     description="A pip package",
     license="GPL",
     author="DMIRLab",
