@@ -1,4 +1,0 @@
-KCI 
-===============
-
-(TODO: add description.)

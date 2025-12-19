@@ -29,27 +29,9 @@ Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: effect methods
+   :caption: Effect methods
 
    effect_methods/index
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Independence tests
-
-   independence_tests_index/index
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Kernel
-
-   kernel_index/index
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Local score
-
-   local_score_index/index
 
 .. toctree::
    :maxdepth: 1

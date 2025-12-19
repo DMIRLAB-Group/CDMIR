@@ -10,3 +10,8 @@ Functional-based
    :maxdepth: 2
 
    SHP/shp
+
+.. toctree::
+   :maxdepth: 2
+
+   OLC/olc

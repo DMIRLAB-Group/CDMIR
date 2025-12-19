@@ -10,8 +10,8 @@ import sys
 sys.path.insert(0, os.path.abspath('..'))
 
 project = 'CDMIR'
-copyright = '2025, Qian Huang'
-author = 'Qian Huang'
+copyright = '2025, Wei Chen'
+author = 'Wei Chen'
 release = '0.1.0'
 
 # -- General configuration ---------------------------------------------------
