@@ -5,6 +5,7 @@ import random
 import pandas as pd
 
 from cdmir.datasets.pgmdata import Gdata2
+import pkg_resources
 
 
 '''
@@ -37,11 +38,13 @@ def test1():
     print('##########-----------------------------------------')
     print('The learned causal cluster is : ',Cluster)
     print('##########-----------------------------------------')
+    assert Cluster == [['O1a', 'O1b', 'O1c'], ['O2a', 'O2b', 'O2c']]
 
 
 def test2():
 
-    data = pd.read_csv('testdata/out.csv')
+    csv_path = pkg_resources.resource_filename('cdmir', 'tests/testdata/out.csv')
+    data = pd.read_csv(csv_path)
 
     labels = ['L1','L2','L3']
 
@@ -56,6 +59,7 @@ def test2():
     print('The adjacent matrix among L1, L2 and L3 is: ')
     print(m)
     print('###########-----------------------------------------')
+    assert m.tolist() == [[0,1,0],[1,0,1],[0,1,0]]
 
 
 

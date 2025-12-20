@@ -200,11 +200,11 @@ class MLP(nn.Module):
 
         Parameters
         ----------
-        x : array-like
+        x : tensor
             Input data.
         Returns
         -------
-        h : array-like
+        h : tensor
             Output data.
         """
         h = x
@@ -341,17 +341,17 @@ class iVAE_tx(nn.Module):
 
         Parameters
         ----------
-        s : array-like
+        s : tensor
             The data of surrogates.
-        covariate : array-like
+        covariate : tensor
             The data of covariates.
-        treatment : array-like
+        treatment : tensor
             The data of the treatment vector.
         Returns
         -------
-        mean : array-like
+        mean : tensor
             The mean of the distribution corresponding to the encoder.
-        variance : array-like
+        variance : tensor
             The variance of the distribution corresponding to the encoder
         """
         s_covariate_treatment = torch.cat((s, covariate, treatment), 1)
@@ -364,11 +364,11 @@ class iVAE_tx(nn.Module):
 
         Parameters
         ----------
-        s : array-like
+        s : tensor
             Samples drawn from the latent distribution.
         Returns
         -------
-        mean : array-like
+        mean : tensor
             The mean of the distribution corresponding to the decoder.
         variance : Number
             Fixed variance of distribution corresponding to the decoder.
@@ -381,16 +381,16 @@ class iVAE_tx(nn.Module):
 
         Parameters
         ----------
-        covariate : array-like
+        covariate : tensor
             The data of covariates.
-        treatment : array-like
+        treatment : tensor
             Treatment vector
 
         Returns
         -------
-        mean : array-like
+        mean : tensor
             Fixed mean of prior distribution.
-        variance : array-like
+        variance : tensor
             The variance of prior distribution.
         """
         covariate_treatment = torch.cat((covariate, treatment), 1)
@@ -406,16 +406,16 @@ class iVAE_tx(nn.Module):
 
         Parameters
         ----------
-        s_latent : array-like
+        s_latent : tensor
             Data sampled from the latent distribution.
-        covariate : array-like
+        covariate : tensor
             The data of covariates.
 
         Returns
         -------
-        mean : array-like
+        mean : tensor
             The mean of distribution.
-        variance : array-like
+        variance : tensor
             Fixed variance of distribution.
         """
         meany = self.meany(torch.cat((s_latent, covariate), dim=1))
@@ -430,26 +430,26 @@ class iVAE_tx(nn.Module):
 
         Parameters
         ----------
-        s : array-like
+        s : tensor
             The data of surrogates.
-        covariate : array-like
+        covariate : tensor
             The data of covariates.
-        treatment : array-like
+        treatment : tensor
             The data of the treatment vector.
 
         Returns
         -------
-        decoder_params : array-like
+        decoder_params : tensor
             The parameters of the decoder.
-        encoder_params : array-like
+        encoder_params : tensor
             The parameters of the encoder.
-        s_latent : array-like
+        s_latent : tensor
             Samples drawn from the latent distribution.
-        prior_params : array-like
+        prior_params : tensor
             The parameters of the prior distribution.
-        y_params : array-like
+        y_params : tensor
             The parameters of the reconstruct distribution.
-        y_hat : array-like
+        y_hat : tensor
             Samples drawn from the reconstruction distribution.
         """
         treatment = 1. * treatment
@@ -478,16 +478,16 @@ class iVAE_tx(nn.Module):
 
         Parameters
         ----------
-        s : array-like
+        s : tensor
             The data of surrogates.
-        covariate : array-like
+        covariate : tensor
             The data of covariates.
-        treatment : array-like
+        treatment : tensor
             The data of the treatment vector.
 
         Returns
         -------
-        meany : array-like
+        meany : tensor
             Long-term outcome y.
         """
         treatment = 1. * treatment
@@ -504,24 +504,24 @@ class iVAE_tx(nn.Module):
 
         Parameters
         ----------
-        s : array-like
+        s : tensor
             The data of surrogates.
         decoder_params : array-like
             The parameters of the decoder.
-        g : array-like
+        g : tensor
             The mean of the distribution corresponding to the encoder.
-        v : array-like
+        v : tensor
             The variance of the distribution corresponding to the encoder.
-        s_latent : array-like
+        s_latent : tensor
             Samples drawn from the latent distribution.
-        prior_params : array-like
+        prior_params : tensor
             The parameters of the prior distribution.
         theta : float
             The coefficient of the ELBO reconstruction term.
 
         Returns
         -------
-        ELBO : array-like
+        ELBO : tensor
             Evidence Lower Bound (ELBO).
         """
         # p(m|s)
@@ -638,7 +638,7 @@ class iVAE_tx(nn.Module):
 
 
 def IVAE_tx_wrapper(data, batch_size=256, max_epoch=2000, n_layers=3, hidden_dim=200, learn_rate=1e-3, weight_decay=1e-4,
-                 activation='lrelu', slope=.1, inference_dim=None, optm='Adam', min_lr=1e-6, base_eopch=200,
+                 activation='lrelu', slope=.1, inference_dim=None, optm='Adam', min_lr=1e-6, base_epoch=200,
                  anneal=False, print_log=True, is_rct=True, cuda=True, normalization=True, beta=1, theta=1,
                  early_stop=True, early_stop_epoch=100, valid_rate=0.2,
                  treatment_dim=1,treated=0.7, control=0.97):
@@ -646,7 +646,7 @@ def IVAE_tx_wrapper(data, batch_size=256, max_epoch=2000, n_layers=3, hidden_dim
 
     Parameters
     ----------
-    data : array-like
+    data : tensor
         Input data.
     batch_size : int
         The size of a batch.
@@ -654,7 +654,7 @@ def IVAE_tx_wrapper(data, batch_size=256, max_epoch=2000, n_layers=3, hidden_dim
         The max number of epochs.
     n_layers : int
         The number of layers in the MLP.
-    hidden_dim : array-like
+    hidden_dim : list
         The dimension of the hidden layers in the MLP.
     learn_rate : float
         Learning rate.
@@ -670,7 +670,7 @@ def IVAE_tx_wrapper(data, batch_size=256, max_epoch=2000, n_layers=3, hidden_dim
         The optimizer.
     min_lr : float
         The minimum lower bound of the learning rate.
-    base_eopch : int
+    base_epoch : int
         Adjust the optimizer parameters after the specified epoch.
     anneal : bool
         Whether to perform annealing.
@@ -701,7 +701,7 @@ def IVAE_tx_wrapper(data, batch_size=256, max_epoch=2000, n_layers=3, hidden_dim
 
     Returns
     -------
-    losses : array-like
+    losses : tensor
         The recorded loss.
     model : iVAE
         The trained iVAE.
@@ -832,7 +832,7 @@ def IVAE_tx_wrapper(data, batch_size=256, max_epoch=2000, n_layers=3, hidden_dim
                     if valid_epoch >= early_stop_epoch:
                         break
 
-        if it > base_eopch:
+        if it > base_epoch:
             scheduler.step(valid_loss)
         # print('current lr={}'.format(optimizer.param_groups[-1]['lr']))
         if optimizer.param_groups[-1]['lr'] < min_lr:

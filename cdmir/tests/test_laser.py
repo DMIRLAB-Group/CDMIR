@@ -32,9 +32,9 @@ def data_generator_np_wo(size=2000, obs_size=1200, dim_x=10, dim_so=2, dim_sl=2,
         Random seed.
     Returns
     -------
-    Obs : array-like, shape (obs_size, dim(x)+dim(t)+dim(y)+dim(s))
+    Obs : np.ndarray, shape (obs_size, dim(x)+dim(t)+dim(y)+dim(s))
         Observed dataset.
-    Exp : array-like, shape (size-obs_size, dim(x)+dim(t)+dim(y)+dim(s))
+    Exp : np.ndarray, shape (size-obs_size, dim(x)+dim(t)+dim(y)+dim(s))
         Experimental dataset.
     tau_real : float
         True causal effect.
@@ -129,7 +129,7 @@ def test_laser(data, seed_num=0, is_rct=1):
     # use wrapper to train
     losses, model = IVAE_tx_wrapper(data=data, batch_size=100, max_epoch=1000, n_layers=3, hidden_dim=200,
                                     learn_rate=1e-4, weight_decay=1e-4, activation='lrelu', inference_dim=2,
-                                    optm='Adam', base_eopch=100, anneal=False, print_log=True, is_rct=True,
+                                    optm='Adam', base_epoch=100, anneal=False, print_log=True, is_rct=True,
                                     cuda=True, normalization=True, beta=1, theta=1, early_stop=True,
                                     treatment_dim=1, treated=1, control=0)
 
