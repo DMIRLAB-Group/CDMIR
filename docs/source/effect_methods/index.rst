@@ -7,4 +7,6 @@ In this section, we introduce effect methods implemented in CDMIR.
    :maxdepth: 2
 
    LASER/LASER
+   DoublyRobust/DoublyRobust
+   OTCI/OTCI
 
