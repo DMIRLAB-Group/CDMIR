@@ -23,9 +23,15 @@ Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: Discovery methods
+   :caption: Causal Discovery methods
 
    discovery_methods/index
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Causal Representation Learning
+
+   causal representation learning/index 
 
 .. toctree::
    :maxdepth: 1

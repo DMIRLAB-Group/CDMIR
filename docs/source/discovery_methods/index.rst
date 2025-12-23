@@ -1,7 +1,7 @@
-Discovery methods
+Causal Discovery methods
 =================
 
-In this section, we introduce discovery methods implemented in CDMIR.
+In this section, we introduce causal discovery methods implemented in CDMIR.
 
 .. toctree::
    :maxdepth: 2
@@ -9,4 +9,4 @@ In this section, we introduce discovery methods implemented in CDMIR.
    Constraint-based methods <constraint/index>
    Functional-based methods <functional_based/index>
    Tensor-Rank methods <tensor_rank/index>
-   LaHiCaSI <LaHiCaSI/index>
+  
